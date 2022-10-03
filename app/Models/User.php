@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Event;
+use App\Models\Reclamation;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -46,5 +47,10 @@ class User extends Authenticatable
     public function events()
     {
         return $this->hasMany(Event::class, 'user_id');
+    }
+
+    public function reclamations()
+    {
+        return $this->hasMany(Reclamation::class, 'user_id');
     }
 }

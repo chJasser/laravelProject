@@ -4,7 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
-
+use App\Http\Controllers\ReclamationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,7 +32,14 @@ Route::get('/events/{event}', [EventController::class, 'show']);
 Route::put('/events/{event}', [EventController::class, 'update']);
 Route::delete('/events/{event}', [EventController::class, 'delete']);
 
-
+Route::get('/reclamations/manage', [ReclamationController::class, 'manage']);
+//Route::post('/reclamations', [ReclamationController::class, 'store']);
+Route::get('/reclamations/create', [ReclamationController::class, 'create']);
+Route::delete('/reclamations/{reclamation}', [ReclamationController::class, 'delete']);
+Route::post('/reclamations/manage', [ReclamationController::class, 'store']);
+Route::get('/reclamations/{reclamation}/edit', [ReclamationController::class, 'edit']);
+Route::put('/reclamations/{reclamation}', [ReclamationController::class, 'update']);
+Route::get('/reclamations/{reclamation}', [ReclamationController::class, 'show']);
 Route::get('/events/{event}/edit', [EventController::class, 'edit']);
 
 // Create New User

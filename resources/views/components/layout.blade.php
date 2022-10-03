@@ -42,6 +42,11 @@
                         Events</a>
                 </li>
                 <li>
+                    <a href="/reclamations/manage" class="hover:text-laravel"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+
+                        Reclamations</a>
+                </li>
+                <li>
                     <form class="inline" method="POST" action="/logout">
                         @csrf
                         <button type="submit">
