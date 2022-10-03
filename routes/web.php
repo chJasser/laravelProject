@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\forumController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,14 @@ use App\Http\Controllers\EventController;
 
 Route::get('/', [EventController::class, 'index']);
 
+Route::get('/forums', [forumController::class, 'index']);
+Route::get('/forums/manage', [forumController::class, 'manage'])->middleware('auth');
+Route::get('/forums/create', [forumController::class, 'create']);
+Route::post('/forums', [forumController::class, 'store']);
+Route::get('/forums/{forum}', [forumController::class, 'show']);
+Route::get('/forums/{forum}/edit', [forumController::class, 'edit']);
+Route::put('/forums/{forum}', [forumController::class, 'update']);
+Route::delete('/forums/{forum}', [forumController::class, 'delete']);
 
 
 ////////

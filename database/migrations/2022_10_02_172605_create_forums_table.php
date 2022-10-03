@@ -17,14 +17,14 @@ return new class extends Migration
             $table->id();
             // $table->foreign('user_id')->references('id')->on('users');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-
+            $table->string('owner');
             $table->string('title');
             $table->longText('description');
-            $table->integer('max-present');
-            $table->enum('desinedTo', ['Teachers', 'Students', 'Parents']);
+            $table->integer('maxPresent');
+            $table->enum('designedTo', ['Teachers', 'Students', 'Parents']);
             $table->date('date');
             $table->string('tags');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->boolean('active');
             $table->timestamps();
         });

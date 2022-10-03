@@ -38,8 +38,16 @@
                     </span>
                 </li>
                 <li>
+                    <a href="/forums" class="hover:text-laravel"><i class="fa-solid fa-list"></i>
+                        Forums</a>
+                </li>
+                <li>
                     <a href="/events/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage
                         Events</a>
+                </li>
+                <li>
+                    <a href="/forums/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage
+                        Forums</a>
                 </li>
                 <li>
                     <form class="inline" method="POST" action="/logout">

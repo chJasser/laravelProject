@@ -18,11 +18,13 @@ class ForumFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
+            'user_id' => 1,
             'description' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima, sint unde? Eos quisquam laudantium iste tempore, incidunt ipsum ipsam. Amet voluptatem excepturi aliquid, vel ipsum fugiat minima praesentium qui? Corporis.',
-            'max-present' => $this->faker->randomNumber(),
-            'desinedTo' => 'Students',
+            'maxPresent' => $this->faker->randomNumber(),
+            'designedTo' => 'Students',
+            'tags' => 'SPORT,MUSIC,FOOD',
             'date' => $this->faker->date(),
-            'image' => $this->faker->imageUrl(),
+            'owner' => 'jasser',
             'active' => $this->faker->boolean(),
         ];
     }

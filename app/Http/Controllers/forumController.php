@@ -2,83 +2,89 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Forum;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+
 
 class forumController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        //  dd(request());
+        return view('Forum.index', [
+            'forums' => Forum::latest()
+                ->filter(request(['tag', 'search']))
+                ->paginate(4)
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function show(Forum $forum)
+    {
+
+        return view('Forum.show', [
+            'forum' => $forum
+        ]);
+    }
+
     public function create()
     {
-        //
+        return view('Forum.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
-    }
+        $formFields = $request->validate([
+            'title' => 'required',
+            'designedTo' => 'required',
+            'description' => 'required',
+            'tags' => 'required',
+            'maxPresent' => 'required',
+            'date' => 'required'
+        ]);
+        if ($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $formFields['user_id'] = auth()->id();
+        $formFields['owner'] = auth()->user()->name;
+        Forum::create($formFields);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return redirect('/forums')->with('message', 'new Forum created successfully !');
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function edit(Forum $forum)
     {
-        //
+        return view('forum.edit', [
+            'forum' => $forum
+        ]);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function update(Request $request, Forum $forum)
     {
-        //
+        if ($forum->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+        $formFields = $request->validate([
+            'title' => 'required',
+            'designedTo' => 'required',
+            'description' => 'required',
+            'tags' => 'required',
+            'maxPresent' => 'required',
+            'date' => 'required'
+        ]);
+        $forum->update($formFields);
+
+        return redirect('/forums/manage')->with('message', 'Forum updated successfully !');
+    }
+    public function delete(Forum $forum)
+    {
+        if ($forum->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+        $forum->delete();
+        return redirect('/forums')->with('message', 'Forum deleted successfully !');
+    }
+    public function manage()
+    {
+        return  view('Forum.manage', ['forums' => auth()->user()->forums()->get()]);
     }
 }

@@ -47,4 +47,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Event::class, 'user_id');
     }
+    public function forums()
+    {
+        return $this->hasMany(Forum::class, 'user_id');
+    }
 }
