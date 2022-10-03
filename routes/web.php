@@ -16,9 +16,10 @@ use App\Http\Controllers\EventController;
 |
 */
 
-Route::get('/', [EventController::class, 'index']);
-
-
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/events', [EventController::class, 'index']);
 
 ////////
 //meth add to database

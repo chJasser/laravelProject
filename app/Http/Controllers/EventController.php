@@ -35,7 +35,6 @@ class EventController extends Controller
     {
         $formFields = $request->validate([
             'title' => 'required',
-            'owner' => ['required', Rule::unique('events', 'owner')],
             'location' => 'required',
             'description' => 'required',
             'tags' => 'required',
@@ -45,6 +44,7 @@ class EventController extends Controller
             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
 
+        $formFields['owner'] = auth()->user()->name;
         $formFields['user_id'] = auth()->id();
         Event::create($formFields);
 
@@ -63,7 +63,6 @@ class EventController extends Controller
         }
         $formFields = $request->validate([
             'title' => 'required',
-            'owner' => 'required',
             'location' => 'required',
             'description' => 'required',
             'tags' => 'required',
