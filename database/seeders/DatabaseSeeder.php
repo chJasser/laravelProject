@@ -7,6 +7,8 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Reclamation;
+use App\Models\Club;
+use App\Models\Course;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,6 +29,12 @@ class DatabaseSeeder extends Seeder
             'user_id' => $user->id
         ]);
         Reclamation::factory(6)->create([
+            'user_id' => $user->id
+        ]);
+        Club::factory(6)->create([
+            'user_id' => $user->id
+        ]);
+        Course::factory(6)->create([
             'user_id' => $user->id
         ]);
     }
