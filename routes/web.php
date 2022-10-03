@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ReclamationController;
+use App\Http\Controllers\ClubController;
+use App\Http\Controllers\CourseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,7 +43,22 @@ Route::get('/reclamations/{reclamation}/edit', [ReclamationController::class, 'e
 Route::put('/reclamations/{reclamation}', [ReclamationController::class, 'update']);
 Route::get('/reclamations/{reclamation}', [ReclamationController::class, 'show']);
 Route::get('/events/{event}/edit', [EventController::class, 'edit']);
-
+//club
+Route::get('/clubs/manage', [clubController::class, 'manage']);
+Route::get('/clubs/create', [clubController::class, 'create']);
+Route::delete('/clubs/{club}', [clubController::class, 'delete']);
+Route::post('/clubs/manage', [clubController::class, 'store']);
+Route::get('/clubs/{club}/edit', [clubController::class, 'edit']);
+Route::put('/clubs/{club}', [clubController::class, 'update']);
+Route::get('/clubs/{club}', [clubController::class, 'show']);
+//course
+Route::get('/courses/manage', [courseController::class, 'manage']);
+Route::get('/courses/create', [courseController::class, 'create']);
+Route::delete('/courses/{course}', [courseController::class, 'delete']);
+Route::post('/courses/manage', [courseController::class, 'store']);
+Route::get('/courses/{course}/edit', [courseController::class, 'edit']);
+Route::put('/courses/{course}', [courseController::class, 'update']);
+Route::get('/courses/{course}', [courseController::class, 'show']);
 // Create New User
 Route::post('/users', [UserController::class, 'store']);
 
