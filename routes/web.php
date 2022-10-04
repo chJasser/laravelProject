@@ -17,7 +17,6 @@ use App\Http\Controllers\forumController;
 |
 */
 
-Route::get('/', [EventController::class, 'index']);
 
 Route::get('/forums', [forumController::class, 'index']);
 Route::get('/forums/manage', [forumController::class, 'manage'])->middleware('auth');
@@ -28,6 +27,10 @@ Route::get('/forums/{forum}/edit', [forumController::class, 'edit']);
 Route::put('/forums/{forum}', [forumController::class, 'update']);
 Route::delete('/forums/{forum}', [forumController::class, 'delete']);
 
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/events', [EventController::class, 'index']);
 
 ////////
 //meth add to database
