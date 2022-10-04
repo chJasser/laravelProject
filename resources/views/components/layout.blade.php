@@ -48,6 +48,9 @@
                 <li>
                     <a href="/forums/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage
                         Forums</a>
+                    <a href="/reclamations/manage" class="hover:text-laravel"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+
+                        Reclamations</a>
                 </li>
                 <li>
                     <form class="inline" method="POST" action="/logout">
