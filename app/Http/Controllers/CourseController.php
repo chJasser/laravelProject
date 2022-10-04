@@ -35,7 +35,7 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'name'=>'required',
+            'title'=>'required',
             'description'=>'required',
         ]);
         $formFields['user_id'] = auth()->id();
@@ -80,7 +80,7 @@ class CourseController extends Controller
             abort(403, 'Unauthorized Action');
         }
         $formFields = $request->validate([
-            'name'=>'required',
+            'title'=>'required',
             'description'=>'required',
         ]);
        // dd($course);

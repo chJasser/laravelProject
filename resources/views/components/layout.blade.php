@@ -47,6 +47,16 @@
                         Reclamations</a>
                 </li>
                 <li>
+                    <a href="/courses/manage" class="hover:text-laravel"><i class="fa fa-book" aria-hidden="true"></i>
+
+                        Courses</a>
+                </li>
+                <li>
+                    <a href="/clubs/manage" class="hover:text-laravel"><i class="fa fa-paint-brush" aria-hidden="true"></i>
+
+                        Clubs</a>
+                </li>
+                <li>
                     <form class="inline" method="POST" action="/logout">
                         @csrf
                         <button type="submit">

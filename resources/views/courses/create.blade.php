@@ -2,17 +2,16 @@
     <x-card class="p-10 rounded max-w-lg mx-auto mt-24">
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
-                create course
+                Create course
             </h2>
 
         </header>
 
         <form action="/courses/manage" method="POST">
             @csrf
-
             <div class="mb-6">
-                <label for="title" class="inline-block text-lg mb-2">title</label>
-                <input type="text" value="{{ old('title') }}" class="border border-gray-200 rounded p-2 w-full" title="title" placeholder="Example: nodeJS" />
+                <label for="title" class="inline-block text-lg mb-2">Title</label>
+                <input type="text" value="{{ old('title') }}" class="border border-gray-200 rounded p-2 w-full" name="title" placeholder="Example: nodeJS" />
                 @error('title')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -20,8 +19,8 @@
             </div>
 
             <div class="mb-6">
-                <label for="description" class="inline-block text-lg mb-2">description</label>
-                <textarea rows="10" type="text" value="{{ old('description') }}" class="border border-gray-200 rounded p-2 w-full" title="description" placeholder="Example: robotics"></textarea>
+                <label for="description" class="inline-block text-lg mb-2">Description</label>
+                <textarea rows="10" type="text" value="{{ old('description') }}" class="border border-gray-200 rounded p-2 w-full" name="description" placeholder="Example: NodeJs"></textarea>
                 @error('description')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
