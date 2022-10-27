@@ -42,8 +42,8 @@ class forumController extends Controller
             'maxPresent' => 'required',
             'date' => 'required'
         ]);
-        if ($request->hasFile('logo')) {
-            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        if ($request->hasFile('image')) {
+            $formFields['image'] = $request->file('image')->store('logos', 'public');
         }
 
         $formFields['user_id'] = auth()->id();

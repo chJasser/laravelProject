@@ -42,12 +42,18 @@
                         Forums</a>
                 </li>
                 <li>
+                    <a href="/conventions" class="hover:text-laravel"><i class="fa-solid fa-list"></i>
+                        Conventions</a>
+                </li>
+                <li>
                     <a href="/events/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage
                         Events</a>
                 </li>
                 <li>
                     <a href="/forums/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage
                         Forums</a>
+                        <a href="/conventions/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage
+                        Conventions</a>
                     <a href="/reclamations/manage" class="hover:text-laravel"><i class="fa fa-paper-plane" aria-hidden="true"></i>
 
                         Reclamations</a>

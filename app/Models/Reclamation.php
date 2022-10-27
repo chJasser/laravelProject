@@ -23,5 +23,10 @@ class Reclamation extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function convention()
+    {
+        return $this->belongsTo(Convention::class, 'convention_id');
+    }
+
     
 }

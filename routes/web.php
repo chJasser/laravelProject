@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\forumController;
+use App\Http\Controllers\ConventionController;
 
 use App\Http\Controllers\ReclamationController;
 /*
@@ -27,6 +28,15 @@ Route::get('/forums/{forum}', [forumController::class, 'show']);
 Route::get('/forums/{forum}/edit', [forumController::class, 'edit']);
 Route::put('/forums/{forum}', [forumController::class, 'update']);
 Route::delete('/forums/{forum}', [forumController::class, 'delete']);
+//convention
+Route::get('/conventions', [ConventionController::class, 'index']);
+Route::get('/conventions/manage', [ConventionController::class, 'manage'])->middleware('auth');
+Route::get('/conventions/create', [ConventionController::class, 'create']);
+Route::post('/conventions', [ConventionController::class, 'store']);
+Route::get('/conventions/{convention}', [ConventionController::class, 'show']);
+Route::get('/conventions/{convention}/edit', [ConventionController::class, 'edit']);
+Route::put('/conventions/{convention}', [ConventionController::class, 'update']);
+Route::delete('/conventions/{convention}', [ConventionController::class, 'delete']);
 
 Route::get('/', function () {
     return view('welcome');
