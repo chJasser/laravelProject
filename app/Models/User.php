@@ -63,6 +63,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reclamation::class, 'user_id');
     }
+    public function clubs(){
+        return $this->hasMany(Club::class, 'user_id');
+    }
+    public function courses(){
+        return $this->hasMany(Course::class, 'user_id');
+    }
     public function conventions()
     {
         return $this->hasMany(Convention::class, 'user_id');
