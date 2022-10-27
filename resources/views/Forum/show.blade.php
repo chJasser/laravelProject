@@ -34,7 +34,7 @@
                 <div class="border border-gray-200 w-full mb-6">
 
                 </div>
-                <div>
+                <div style="width: 100%;">
                     <h3 class="text-3xl font-bold mb-4">
                         forum Description
                     </h3>
@@ -42,6 +42,10 @@
                         <p>{{ $forum->description }}
                         </p>
                     </div>
+                    <div class="border border-gray-200 w-full mb-6">
+                    </div>
+
+
                 </div>
             </div>
         </x-card>

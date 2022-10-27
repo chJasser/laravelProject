@@ -10,10 +10,11 @@ use App\Http\Controllers\ConventionController;
 use App\Http\Controllers\DisLikeController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReclamationController;
+use App\Http\Controllers\SubscriberController;
 use App\Models\DisLike;
 use App\Models\Like;
 
-Route::get('/forums', [forumController::class, 'index']);
+Route::get('/forums', [forumController::class, 'index'])->name("indexForum");
 Route::get('/forums/manage', [forumController::class, 'manage'])->middleware('auth');
 Route::get('/forums/create', [forumController::class, 'create']);
 Route::post('/forums', [forumController::class, 'store']);
@@ -29,6 +30,8 @@ Route::put('/posts/{post}', [PostController::class, 'update']);
 //likes
 Route::POST('/likes/{post}', [LikeController::class, 'store']);
 Route::delete('/likes/{post}', [LikeController::class, 'destroy']);
+
+Route::post('/subscribe', [SubscriberController::class, 'subscribe']);
 
 //dislikes
 Route::POST('/dislikes/{post}', [DisLikeController::class, 'store']);
