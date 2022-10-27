@@ -46,7 +46,6 @@
             </div>
         </x-card>
         <div>
-
             <x-post :posts="$posts" :id="$forum->id" />
         </div>
 

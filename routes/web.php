@@ -9,6 +9,9 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ConventionController;
 use App\Http\Controllers\DisLikeController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\DisLikeConventionController;
+use App\Http\Controllers\LikeConventionController;
+
 use App\Http\Controllers\ReclamationController;
 use App\Models\DisLike;
 use App\Models\Like;
@@ -33,7 +36,13 @@ Route::delete('/likes/{post}', [LikeController::class, 'destroy']);
 //dislikes
 Route::POST('/dislikes/{post}', [DisLikeController::class, 'store']);
 Route::delete('/dislikes/{post}', [DisLikeController::class, 'destroy']);
+//conventionlikes
+Route::POST('/likesconvention/{convention}', [LikeConventionController::class, 'store']);
+Route::delete('/likesconvention/{convention}', [LikeConventionController::class, 'destroy']);
 
+//conventiondislikes
+Route::POST('/dislikesconvention/{convention}', [DisLikeConventionController::class, 'store']);
+Route::delete('/dislikesconvention/{convention}', [DisLikeConventionController::class, 'destroy']);
 Route::get('/', function () {
     return view('welcome');
 });

@@ -70,6 +70,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(DisLike::class, 'user_id');
     }
+    public function conventionlikes()
+    {
+        return $this->hasMany(LikeConvention::class, 'user_id');
+    }
+
+    public function conventiondislikes()
+    {
+        return $this->hasMany(DisLikeConvention::class, 'user_id');
+    }
 
     public function forums()
     {

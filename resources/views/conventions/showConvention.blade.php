@@ -16,6 +16,7 @@
                     </div>
                 </div>
         </x-card>
+        <x-convention-item :convention="$convention"> </x-convention-item>
         
     </div>
 </x-layout>

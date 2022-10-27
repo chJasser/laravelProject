@@ -30,4 +30,12 @@ class Convention extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function likes()
+    {
+        return $this->hasMany(Like::class, 'convention_id');
+    }
+    public function disLikes()
+    {
+        return $this->hasMany(DisLike::class, 'convention_id');
+    }
 }
