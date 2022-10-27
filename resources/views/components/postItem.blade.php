@@ -10,11 +10,50 @@
                     {{ $post->content }} </h5>
                 </span>
             </div>
+
         </div>
+
+        @php
+            $likes = App\Http\Controllers\LikeController::index($post->id);
+            $liked = false;
+            foreach ($likes as $like) {
+                if ($like->user_id == auth()->id()) {
+                    $liked = true;
+                }
+            }
+            $dislikes = App\Http\Controllers\DisLikeController::index($post->id);
+            $disliked = false;
+            foreach ($dislikes as $dislike) {
+                if ($dislike->user_id == auth()->id()) {
+                    $disliked = true;
+                }
+            }
+        @endphp
 
         <div class="mt-3 p-4">
 
-            <div id="accordion-collapse" data-accordion="collapse">
+            <div class="flex justify-end">
+                <form method="POST" action="/likes/{{ $post->id }}">
+                    @csrf
+                    <button type="submit" {{ $liked === true ? 'disabled' : '' }}>
+
+                        <span style="color: white;font-size:30px"> {{ count($likes) }} </span>
+                        <i style="font-size: 40px;cursor: pointer;" class="fa-solid fa-thumbs-up m-2"></i>
+                    </button>
+                </form>
+
+                <form method="POST" action="/dislikes/{{ $post->id }}">
+                    @csrf
+                    <button type="submit" {{ $disliked === true ? 'disabled' : '' }}>
+
+                        <span style="color: white;font-size:30px"> {{ count($dislikes) }} </span>
+                        <i style="font-size: 40px;cursor: pointer;" class="fa-solid fa-thumbs-down  m-2"></i>
+                    </button>
+                </form>
+
+
+            </div>
+            <div style="margin-top: -45px" id="accordion-collapse" data-accordion="collapse">
                 <div class="flex">
                     <button type="button" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
                         aria-controls="accordion-collapse-body-2"
@@ -38,7 +77,8 @@
 
                     <div class="flex mx-auto items-center justify-center shadow-lg mt-5  mb-4 ">
 
-                        <form method="POST" action="/posts/{{ $post->id }}" class="w-full  bg-white rounded-lg  pt-2">
+                        <form method="POST" action="/posts/{{ $post->id }}"
+                            class="w-full  bg-white rounded-lg  pt-2">
                             @csrf
                             @method('PUT')
                             <div class="flex flex-wrap mb-6">
@@ -63,13 +103,10 @@
                                     </div>
                                 </div>
                         </form>
+
                     </div>
                 </div>
             </div>
-
-
-
-
 
             </a>
         </div>

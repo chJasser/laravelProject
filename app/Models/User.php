@@ -61,8 +61,15 @@ class User extends Authenticatable
     }
 
 
+    public function likes()
+    {
+        return $this->hasMany(Like::class, 'user_id');
+    }
 
-
+    public function dislikes()
+    {
+        return $this->hasMany(DisLike::class, 'user_id');
+    }
 
     public function forums()
     {

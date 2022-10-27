@@ -21,7 +21,9 @@ class Post extends Model
     {
         return $this->hasMany(Like::class, 'post_id');
     }
+    public function disLikes()
+    {
+        return $this->hasMany(DisLike::class, 'post_id');
+    }
     use HasFactory;
-
-
 }

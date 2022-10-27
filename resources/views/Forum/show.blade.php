@@ -16,6 +16,7 @@
     @endif
     <div class="mx-4">
         <x-card class="p-10 ">
+
             <div class="flex flex-col items-center justify-center text-center">
                 <img class="w-48 mr-6 mb-6"
                     src="{{ $forum->image ? asset('storage/' . $forum->image) : asset('images/no-image.png') }}"
@@ -29,7 +30,10 @@
                 <div class="text-lg my-4">
                     {{ $forum->maxPresent }}
                 </div>
-                <div class="border border-gray-200 w-full mb-6"></div>
+
+                <div class="border border-gray-200 w-full mb-6">
+
+                </div>
                 <div>
                     <h3 class="text-3xl font-bold mb-4">
                         forum Description
@@ -43,7 +47,7 @@
         </x-card>
         <div>
 
-             <x-post :posts="$posts" :id="$forum->id" />
+            <x-post :posts="$posts" :id="$forum->id" />
         </div>
 
     </div>

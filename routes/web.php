@@ -7,10 +7,11 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\forumController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ConventionController;
-
+use App\Http\Controllers\DisLikeController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReclamationController;
-
-
+use App\Models\DisLike;
+use App\Models\Like;
 
 Route::get('/forums', [forumController::class, 'index']);
 Route::get('/forums/manage', [forumController::class, 'manage'])->middleware('auth');
@@ -25,7 +26,13 @@ Route::get('/forums/{forum}', [forumController::class, 'show'])->name("forum");
 Route::post('/posts/{forum}', [PostController::class, 'store']);
 Route::delete('/posts/{post}', [PostController::class, 'destroy']);
 Route::put('/posts/{post}', [PostController::class, 'update']);
+//likes
+Route::POST('/likes/{post}', [LikeController::class, 'store']);
+Route::delete('/likes/{post}', [LikeController::class, 'destroy']);
 
+//dislikes
+Route::POST('/dislikes/{post}', [DisLikeController::class, 'store']);
+Route::delete('/dislikes/{post}', [DisLikeController::class, 'destroy']);
 
 Route::get('/', function () {
     return view('welcome');
