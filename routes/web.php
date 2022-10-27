@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\forumController;
-
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReclamationController;
 /*
 |--------------------------------------------------------------------------
@@ -20,20 +20,27 @@ use App\Http\Controllers\ReclamationController;
 
 
 Route::get('/forums', [forumController::class, 'index']);
+
 Route::get('/forums/manage', [forumController::class, 'manage'])->middleware('auth');
 Route::get('/forums/create', [forumController::class, 'create']);
 Route::post('/forums', [forumController::class, 'store']);
-Route::get('/forums/{forum}', [forumController::class, 'show']);
+Route::get('/forums/{forum}', [forumController::class, 'show'])->name("forum");
 Route::get('/forums/{forum}/edit', [forumController::class, 'edit']);
 Route::put('/forums/{forum}', [forumController::class, 'update']);
 Route::delete('/forums/{forum}', [forumController::class, 'delete']);
+
+//posts
+Route::post('/posts/{forum}', [PostController::class, 'store']);
+Route::delete('/posts/{post}', [PostController::class, 'destroy']);
+Route::put('/posts/{post}', [PostController::class, 'update']);
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/events', [EventController::class, 'index']);
 
-////////
+
 //meth add to database
 Route::post('/events', [EventController::class, 'store']);
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');

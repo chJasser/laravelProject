@@ -48,12 +48,23 @@ class User extends Authenticatable
     {
         return $this->hasMany(Event::class, 'user_id');
     }
+
+    public function reclamations()
+    {
+        return $this->hasMany(Reclamation::class, 'user_id');
+    }
+
+
+
+
+
     public function forums()
     {
         return $this->hasMany(Forum::class, 'user_id');
     }
-    public function reclamations()
+
+    public function posts()
     {
-        return $this->hasMany(Reclamation::class, 'user_id');
+        return $this->hasMany(Post::class, 'user_id');
     }
 }

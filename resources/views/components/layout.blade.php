@@ -11,7 +11,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
-
+    <link href="/css/app.css" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -48,7 +48,8 @@
                 <li>
                     <a href="/forums/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage
                         Forums</a>
-                    <a href="/reclamations/manage" class="hover:text-laravel"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                    <a href="/reclamations/manage" class="hover:text-laravel"><i class="fa fa-paper-plane"
+                            aria-hidden="true"></i>
 
                         Reclamations</a>
                 </li>
@@ -78,13 +79,15 @@
         {{ $slot }}
     </main>
 
-    {{-- <footer
+    <footer
         class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-white h-24 mt-24 opacity-90 md:justify-center">
         <p class="ml-2">Copyright &copy; 2022, All Rights reserved</p>
 
         <a href="/events/create" class="absolute top-1/3 right-10 bg-black text-white py-2 px-5">Post Job</a>
-    </footer> --}}
+    </footer>
     <x-flash-dash-message></x-flash-dash-message>
 </body>
+<script src="../path/to/flowbite/dist/flowbite.js"></script>
+<script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 
 </html>

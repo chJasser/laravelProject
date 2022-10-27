@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Forum;
+use App\Models\Post;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -23,8 +24,10 @@ class forumController extends Controller
     public function show(Forum $forum)
     {
 
+        $posts = Post::where("forum_id", $forum->id)->get();
         return view('Forum.show', [
-            'forum' => $forum
+            'forum' => $forum,
+            'posts' => $posts
         ]);
     }
 
@@ -32,8 +35,10 @@ class forumController extends Controller
     {
         return view('Forum.create');
     }
+
     public function store(Request $request)
     {
+
         $formFields = $request->validate([
             'title' => 'required',
             'designedTo' => 'required',
@@ -42,8 +47,8 @@ class forumController extends Controller
             'maxPresent' => 'required',
             'date' => 'required'
         ]);
-        if ($request->hasFile('logo')) {
-            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        if ($request->hasFile('image')) {
+            $formFields['image'] = $request->file('image')->store('logos', 'public');
         }
 
         $formFields['user_id'] = auth()->id();
