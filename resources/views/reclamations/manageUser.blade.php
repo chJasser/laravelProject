@@ -15,8 +15,8 @@
                     <th>Title</th>
                     <th>Content</th>
                     <th>Status</th>
-                    <th>Owner</th>
                     <th>Convention Reclamé</th>
+                    <th>Update</th>
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -31,16 +31,19 @@
                         {{ $reclamation->content }}
                     </td>
                     <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-                        <input type="checkbox" name="status" @checked($reclamation->status || old('status',0)===1) />
-                    </td>
-                    <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-                        {{ $reclamation->owner }}
+                       inactive
+
                     </td>
                     <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
                         {{ $reclamation->convention_id }}
                     </td>
                     <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-                        <form method="POST" action="/reclamationsAdmin/{{ $reclamation->id }}">
+                                <a href="/reclamations/{{ $reclamation->id }}/edit" class="text-blue-400 px-6 py-2 rounded-xl"><i
+                                        class="fa-solid fa-pen-to-square"></i>
+                                    Edit</a>
+                            </td>
+                    <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
+                        <form method="POST" action="/reclamations/{{ $reclamation->id }}">
                             @csrf
                             @method('DELETE')
                             <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete</button>
