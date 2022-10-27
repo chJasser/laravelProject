@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -47,6 +48,10 @@ class User extends Authenticatable
     public function events()
     {
         return $this->hasMany(Event::class, 'user_id');
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comments::class, 'user_id');
     }
     public function forums()
     {

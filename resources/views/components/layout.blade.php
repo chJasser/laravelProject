@@ -27,31 +27,42 @@
     <title>SmartSchool</title>
 </head>
 
+
 <body class="mb-48">
     <nav class="flex justify-between items-center mb-4">
         <a href="/"><img class="w-24" src="{{ asset('images/logo.jpg') }}" alt="" class="logo" /></a>
         <ul class="flex space-x-6 mr-6 text-lg">
+
             @auth
                 <li>
                     <span class="font-bold uppercase">
-                        Welcome {{ auth()->user()->name }}
+                        {{ auth()->user()->name }}
                     </span>
                 </li>
-                <li>
-                    <a href="/forums" class="hover:text-laravel"><i class="fa-solid fa-list"></i>
-                        Forums</a>
-                </li>
-                <li>
-                    <a href="/events/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage
-                        Events</a>
-                </li>
-                <li>
-                    <a href="/forums/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage
-                        Forums</a>
-                    <a href="/reclamations/manage" class="hover:text-laravel"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                @php
+                    $userRole = App\Http\Controllers\UserController::userRole(auth()->id());
+                @endphp
+                @unless($userRole != 'admin')
+                    <li>
+                        <a href="/forums" class="hover:text-laravel"><i class="fa-solid fa-list"></i>
+                            Forums</a>
+                    </li>
+                    <li>
+                        <a href="/backoffice/events/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage
+                            Events</a>
+                    </li>
 
-                        Reclamations</a>
-                </li>
+                    <li>
+                        <a href="/forums/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage
+                            Forums</a>
+                        <a href="/reclamations/manage" class="hover:text-laravel"><i class="fa fa-paper-plane"
+                                aria-hidden="true"></i>
+
+                            Reclamations</a>
+                    </li>
+                @else
+
+                @endunless
                 <li>
                     <form class="inline" method="POST" action="/logout">
                         @csrf
@@ -59,9 +70,6 @@
                             <i class="fa-solid fa-door-closed"></i> Logout
                         </button>
                     </form>
-                </li>
-                <li>
-                    <a href="/events/create" class="hover:text-laravel">Post Event</a>
                 </li>
             @else
                 <li>

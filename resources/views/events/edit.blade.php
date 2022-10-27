@@ -7,7 +7,7 @@
             <p class="mb-4">Edit Event</p>
         </header>
 
-        <form action="/events/{{ $event->id }}" method="POST" enctype="multipart/form-data">
+        <form action="/backoffice/events/{{ $event->id }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
