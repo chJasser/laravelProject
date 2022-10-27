@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Forum;
+use App\Models\Post;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -12,7 +13,7 @@ class forumController extends Controller
 {
     public function index()
     {
-        //  dd(request());
+
         return view('Forum.index', [
             'forums' => Forum::latest()
                 ->filter(request(['tag', 'search']))
@@ -23,8 +24,10 @@ class forumController extends Controller
     public function show(Forum $forum)
     {
 
+        $posts = Post::where("forum_id", $forum->id)->get();
         return view('Forum.show', [
-            'forum' => $forum
+            'forum' => $forum,
+            'posts' => $posts
         ]);
     }
 
@@ -32,8 +35,10 @@ class forumController extends Controller
     {
         return view('Forum.create');
     }
+
     public function store(Request $request)
     {
+
         $formFields = $request->validate([
             'title' => 'required',
             'designedTo' => 'required',
@@ -50,7 +55,7 @@ class forumController extends Controller
         $formFields['owner'] = auth()->user()->name;
         Forum::create($formFields);
 
-        return redirect('/forums')->with('message', 'new Forum created successfully !');
+        return redirect('/forums/manage')->with('message', 'new Forum created successfully !');
     }
     public function edit(Forum $forum)
     {
@@ -81,7 +86,7 @@ class forumController extends Controller
             abort(403, 'Unauthorized Action');
         }
         $forum->delete();
-        return redirect('/forums')->with('message', 'Forum deleted successfully !');
+        return redirect('/forums/manage')->with('message', 'Forum deleted successfully !');
     }
     public function manage()
     {

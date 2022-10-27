@@ -5,20 +5,43 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\forumController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ConventionController;
-
+use App\Http\Controllers\DisLikeController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReclamationController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Models\DisLike;
+use App\Models\Like;
 
+Route::get('/forums', [forumController::class, 'index']);
+Route::get('/forums/manage', [forumController::class, 'manage'])->middleware('auth');
+Route::get('/forums/create', [forumController::class, 'create']);
+Route::post('/forums', [forumController::class, 'store']);
+
+Route::get('/forums/{forum}/edit', [forumController::class, 'edit']);
+Route::put('/forums/{forum}', [forumController::class, 'update']);
+Route::delete('/forums/{forum}', [forumController::class, 'delete']);
+Route::get('/forums/{forum}', [forumController::class, 'show'])->name("forum");
+//posts
+Route::post('/posts/{forum}', [PostController::class, 'store']);
+Route::delete('/posts/{post}', [PostController::class, 'destroy']);
+Route::put('/posts/{post}', [PostController::class, 'update']);
+//likes
+Route::POST('/likes/{post}', [LikeController::class, 'store']);
+Route::delete('/likes/{post}', [LikeController::class, 'destroy']);
+
+//dislikes
+Route::POST('/dislikes/{post}', [DisLikeController::class, 'store']);
+Route::delete('/dislikes/{post}', [DisLikeController::class, 'destroy']);
+
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/events', [EventController::class, 'index']);
+
+
+//meth add to database
+Route::post('/events', [EventController::class, 'store']);
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 // Create New User
 Route::post('/users', [UserController::class, 'store']);
@@ -51,14 +74,7 @@ Route::post('/participate/{event}', [EventController::class, 'participate']);
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 
-Route::get('/forums', [forumController::class, 'index']);
-Route::get('/forums/manage', [forumController::class, 'manage'])->middleware('auth');
-Route::get('/forums/create', [forumController::class, 'create']);
-Route::post('/forums', [forumController::class, 'store']);
-Route::get('/forums/{forum}', [forumController::class, 'show']);
-Route::get('/forums/{forum}/edit', [forumController::class, 'edit']);
-Route::put('/forums/{forum}', [forumController::class, 'update']);
-Route::delete('/forums/{forum}', [forumController::class, 'delete']);
+
 //convention
 Route::get('/conventions', [ConventionController::class, 'index']);
 Route::get('/conventions/manage', [ConventionController::class, 'manage'])->middleware('auth');

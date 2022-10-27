@@ -13,18 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('forums', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('owner');
-            $table->string('title');
-            $table->longText('description');
-            $table->integer('maxPresent');
-            $table->enum('designedTo', ['Teachers', 'Students', 'Parents']);
-            $table->date('date');
-            $table->string('tags');
-            $table->string('image')->nullable();
-            $table->boolean('active');
+            $table->foreignId('forum_id')->constrained()->onDelete('cascade');
+            $table->longText('content');
             $table->timestamps();
         });
     }
@@ -36,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forums');
+        Schema::dropIfExists('posts');
     }
 };
