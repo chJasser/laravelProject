@@ -10,13 +10,17 @@
         <form action="/reclamations/manage" method="POST">
             @csrf
             <div class="mb-6">
-                <label for="owner" class="inline-block text-lg mb-2">owner Name</label>
-                <input type="text" value="{{ old('owner') }}" class="border border-gray-200 rounded p-2 w-full" name="owner" />
-                @error('owner')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                <label for="convention_id" class="inline-block text-lg mb-2"> Convention</label>
+                <select value="{{ old('convention_id') }}" class="border border-gray-200 rounded p-2 w-full"
+                    name="convention_id">
+                    @foreach($conventions as $convention)
+                         <option value="{{ $convention->id }}">{{ $convention->name }}</option>
+                     @endforeach
+                </select>
+                @error('convention')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
-
             <div class="mb-6">
                 <label for="title" class="inline-block text-lg mb-2">Title</label>
                 <input type="text" value="{{ old('title') }}" class="border border-gray-200 rounded p-2 w-full" name="title" placeholder="Example: TWIN Departement" />

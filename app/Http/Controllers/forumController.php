@@ -13,7 +13,7 @@ class forumController extends Controller
 {
     public function index()
     {
-        //  dd(request());
+
         return view('Forum.index', [
             'forums' => Forum::latest()
                 ->filter(request(['tag', 'search']))
@@ -55,7 +55,7 @@ class forumController extends Controller
         $formFields['owner'] = auth()->user()->name;
         Forum::create($formFields);
 
-        return redirect('/forums')->with('message', 'new Forum created successfully !');
+        return redirect('/forums/manage')->with('message', 'new Forum created successfully !');
     }
     public function edit(Forum $forum)
     {
@@ -86,7 +86,7 @@ class forumController extends Controller
             abort(403, 'Unauthorized Action');
         }
         $forum->delete();
-        return redirect('/forums')->with('message', 'Forum deleted successfully !');
+        return redirect('/forums/manage')->with('message', 'Forum deleted successfully !');
     }
     public function manage()
     {

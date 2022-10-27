@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reclamations', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('convention_id')->constrained()->onDelete('cascade');
-            $table->string('title');
-            $table->longText('content');
-            $table->boolean('status');
-            $table->string('owner');
+            $table->string('content');
+            $table->date('date');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reclamations');
+        Schema::dropIfExists('comments');
     }
 };

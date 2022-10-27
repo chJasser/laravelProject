@@ -39,11 +39,10 @@ class PostController extends Controller
         $formFields = $request->validate([
             'content' => 'required',
         ]);
-
         $formFields['user_id'] = auth()->id();
         $formFields['forum_id'] = $id;
         Post::create($formFields);
-        return Redirect::route('forum', $id)->with('message', 'Post added successfully !');
+        return redirect()->route('forum', $id)->with('message', 'Post added successfully !');
     }
 
     /**

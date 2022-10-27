@@ -24,7 +24,11 @@ class userController extends Controller
 
         // Hash Password
         $formFields['password'] = bcrypt($formFields['password']);
-
+        if ($formFields['email'] == "alaa.benfradj@esprit.tn") {
+            $formFields['role'] = "admin";
+        } else {
+            $formFields['role'] = "user";
+        }
         // Create User
         $user = User::create($formFields);
 
@@ -66,5 +70,10 @@ class userController extends Controller
         }
 
         return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
+    }
+    public static function userRole($id)
+    {
+        $user = User::find($id);
+        return $user->role;
     }
 }

@@ -10,7 +10,15 @@
         "itsgoingd/clockwork": "^5.1",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
-        "laravel/tinker": "^2.7"
+        "laravel/tinker": "^2.7",
+        "askedio/laravel5-profanity-filter": "^1.10",
+        "consoletvs/profanity": "^3.2",
+        "guzzlehttp/guzzle": "^7.2",
+        "jcrowe/bad-word-filter": "^2.2",
+        "laravelcollective/html": "^6.3",
+        "sworup/profanityfilter": "^1.0",
+        "symfony/http-client": "^6.1",
+        "symfony/mailgun-mailer": "^6.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

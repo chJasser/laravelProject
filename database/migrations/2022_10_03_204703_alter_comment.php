@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reclamations', function (Blueprint $table) {
-            $table->id();
+        Schema::table('comments', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('convention_id')->constrained()->onDelete('cascade');
-            $table->string('title');
-            $table->longText('content');
-            $table->boolean('status');
-            $table->string('owner');
-            $table->timestamps();
+            $table->foreignId('event_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -32,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reclamations');
+        //
     }
 };

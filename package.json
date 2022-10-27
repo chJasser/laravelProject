@@ -16,5 +16,9 @@
         "sass": "^1.32.11",
         "tailwindcss": "^3.2.1",
         "vite": "^3.0.0"
+    },
+    "dependencies": {
+        "jsvectormap": "^1.5.1",
+        "swiper": "^8.4.4"
     }
 }

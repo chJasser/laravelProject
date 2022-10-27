@@ -7,11 +7,9 @@
             <p class="mb-4">Edit Event</p>
         </header>
 
-        <form action="/events/{{ $event->id }}" method="POST" enctype="multipart/form-data">
+        <form action="/backoffice/events/{{ $event->id }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-
-
             <div class="mb-6">
                 <label for="title" class="inline-block text-lg mb-2">Job Title</label>
                 <input type="text" value="{{ $event->title }}" class="border border-gray-200 rounded p-2 w-full"
@@ -30,20 +28,6 @@
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
-
-
-
-            <div class="mb-6">
-                <label for="website" class="inline-block text-lg mb-2">
-                    Website/Application URL
-                </label>
-                <input type="text" value="{{ $event->website }}" class="border border-gray-200 rounded p-2 w-full"
-                    name="website" />
-                @error('website')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
             <div class="mb-6">
                 <label for="tags" class="inline-block text-lg mb-2">
                     Tags (Comma Separated)
@@ -56,11 +40,32 @@
             </div>
 
             <div class="mb-6">
+                <label for="start_date" class="inline-block text-lg mb-2">
+                    Start Date
+                </label>
+                <input type="date" value="{{ $event->start_date }}" id="start_date"
+                    class="border border-gray-200 rounded p-2 w-full" name="start_date" />
+                @error('start_date')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-6">
+                <label for="end_date" class="inline-block text-lg mb-2">
+                    Start Date
+                </label>
+                <input type="date" value="{{ $event->end_date }} id="end_date"
+                    class="border border-gray-200 rounded p-2 w-full" name="end_date" />
+                @error('end_date')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-6">
                 <label for="logo" class="inline-block text-lg mb-2">
                     Event Logo
                 </label>
                 <img class="w-48 mr-6 mb-6"
-                    src="{{ $event->logo ? asset('storage/' . $event->logo) : asset('images/no-image.png') }}"
+                    src="{{ $event->logo ? asset('/storage/app/public/' . $event->logo) : asset('images/no-image.png') }}"
                     alt="" />
                 <input type="file" class="border border-gray-200 rounded p-2 w-full" name="logo" />
                 @error('logo')

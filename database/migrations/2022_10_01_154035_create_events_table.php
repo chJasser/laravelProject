@@ -21,8 +21,9 @@ return new class extends Migration
             $table->string('tags');
             $table->string('owner');
             $table->string('location');
-            $table->string('website');
-            $table->string('logo')->nullable();
+            $table->string('logo');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }
