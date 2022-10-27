@@ -30,16 +30,26 @@
 
 
 
-            {{-- <div class="mb-6">
-                <label for="website" class="inline-block text-lg mb-2">
-                    Website/Application URL
+            <div class="mb-6">
+                <label for="start_date" class="inline-block text-lg mb-2">
+                    Start Date
                 </label>
-                <input type="text" value="{{ old('website') }}" class="border border-gray-200 rounded p-2 w-full"
-                    name="website" />
-                @error('website')
+                <input type="date" value="{{ old('start_date') }}" id="start_date"
+                    class="border border-gray-200 rounded p-2 w-full" name="start_date" />
+                @error('start_date')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
-            </div> --}}
+            </div>
+            <div class="mb-6">
+                <label for="end_date" class="inline-block text-lg mb-2">
+                    Start Date
+                </label>
+                <input type="date" value="{{ old('end_date') }}" id="end_date"
+                    class="border border-gray-200 rounded p-2 w-full" name="end_date" />
+                @error('end_date')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
             <div class="mb-6">
                 <label for="tags" class="inline-block text-lg mb-2">

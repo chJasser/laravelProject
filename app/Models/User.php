@@ -65,4 +65,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Convention::class, 'user_id');
     }
+    public function eventUser()
+    {
+        return $this->belongsToMany(Event::class, 'participant_event');
+    }
 }

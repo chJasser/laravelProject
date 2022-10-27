@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comments;
 use App\Models\Event;
+use App\Models\ParticipantEvent;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -124,6 +125,12 @@ class EventController extends Controller
         }
         $comment->delete();
         return redirect('/events')->with('message', 'comment deleted successfully !');
+    }
+    public function participate(Event $event)
+    {
+        $user = auth()->user();
+        $user->eventUser()->attach($event->id);
+        return back()->with('message', 'participation succeeded !');
     }
 }
 //F11
