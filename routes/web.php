@@ -46,6 +46,7 @@ Route::delete('/backoffice/events/{event}', [EventController::class, 'delete']);
 Route::post('/events/{event}/comments/', [EventController::class, 'addComment']);
 Route::get('/backoffice/events/{event}/edit', [EventController::class, 'edit']);
 Route::delete('/delete/{comment}', [EventController::class, 'deleteComment']);
+Route::post('/participate/{event}', [EventController::class, 'participate']);
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 

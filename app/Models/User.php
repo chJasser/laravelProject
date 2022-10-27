@@ -61,4 +61,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reclamation::class, 'user_id');
     }
+    public function eventUser()
+    {
+        return $this->belongsToMany(Event::class, 'participant_event');
+    }
 }

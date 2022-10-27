@@ -4,8 +4,26 @@
     <div class="mx-4">
         <x-card class="p-10 ">
             <div class="flex flex-col items-center justify-center text-center">
+                @php
+                    $check = in_array(
+                        auth()->id(),
+                        $event
+                            ->participants()
+                            ->pluck('id')
+                            ->toArray(),
+                    );
+                @endphp
+                @unless($check == true)
+                    <form action="/participate/{{ $event->id }}" method="POST">
+                        @csrf
+                        <button class="text-green-500 ml-5 "><i class="fa-solid fa-plus"></i>Part</button>
+                    </form>
+                @else
+                    <h3 class="text-2xl mb-2">you're already a participant</h3>
+                @endunless
+
                 <img class="w-48 mr-6 mb-6"
-                    src="{{ $event->logo ? asset('../../../storage/app/public/logos/' . $event->logo) : asset('images/no-image.png') }}"
+                    src="{{ $event->logo ? asset('/storage/app/public/logos/' . $event->logo) : asset('images/no-image.png') }}"
                     alt="" />
 
                 <h3 class="text-2xl mb-2">{{ $event->title }}</h3>
