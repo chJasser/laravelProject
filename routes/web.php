@@ -84,6 +84,8 @@ Route::get('/conventions/manage', [ConventionController::class, 'manage'])->midd
 Route::get('/conventions/create', [ConventionController::class, 'create']);
 Route::post('/conventions', [ConventionController::class, 'store']);
 Route::get('/conventions/{convention}', [ConventionController::class, 'show']);
+Route::get('/conventionsshow/{convention}', [ConventionController::class, 'showConvention']);
+
 Route::get('/conventions/{convention}/edit', [ConventionController::class, 'edit']);
 Route::put('/conventions/{convention}', [ConventionController::class, 'update']);
 Route::delete('/conventions/{convention}', [ConventionController::class, 'delete']);
@@ -94,9 +96,11 @@ Route::get('/', function () {
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 Route::get('/reclamations/manage', [ReclamationController::class, 'manage']);
+Route::get('/reclamations/manageUser', [ReclamationController::class, 'manageUser']);
 //Route::post('/reclamations', [ReclamationController::class, 'store']);
 Route::get('/reclamations/create', [ReclamationController::class, 'create']);
 Route::delete('/reclamations/{reclamation}', [ReclamationController::class, 'delete']);
+Route::delete('/reclamationsAdmin/{reclamation}', [ReclamationController::class, 'deleteAdmin']);
 Route::post('/reclamations/manage', [ReclamationController::class, 'store']);
 Route::get('/reclamations/{reclamation}/edit', [ReclamationController::class, 'edit']);
 Route::put('/reclamations/{reclamation}', [ReclamationController::class, 'update']);
