@@ -46,7 +46,7 @@ class ReclamationController extends Controller
         $formFields['owner'] = auth()->user()->name;
         $formFields['status'] =false;
         Reclamation::create($formFields);
-        return redirect('/reclamations/manage')->with('message', 'new reclamation created successfully !');
+        return redirect('/reclamations/manageUser')->with('message', 'new reclamation created successfully !');
     }
 
    
@@ -57,7 +57,8 @@ class ReclamationController extends Controller
             'reclamation' => $reclamation,'selected'=>$selected
         ]);
     }
-
+    
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -89,24 +90,34 @@ class ReclamationController extends Controller
             'title'=>'required',
             'content'=>'required',
         ]);
-       // dd($reclamation);
         $reclamation->update($formFields);
 
-        return redirect('/reclamations/manage')->with('message', 'Reclamation updated successfully !');
+        return redirect('/reclamations/manageUser')->with('message', 'Reclamation updated successfully !');
     }
-
-    
     public function delete(Reclamation $reclamation)
     {
         if ($reclamation->user_id != auth()->id()) {
             abort(403, 'Unauthorized Action');
         }
         $reclamation->delete();
+        return redirect('/reclamations/manageUser')->with('message', 'reclamation deleted successfully !');
+    }
+    public function deleteAdmin(Reclamation $reclamation)
+    {
+        $reclamation->delete();
         return redirect('/reclamations/manage')->with('message', 'reclamation deleted successfully !');
     }
     public function manage()
     {
-
-        return  view('reclamations.manage', ['reclamations' => auth()->user()->reclamations()->get()]);
+        $reclamations = Reclamation::all();  
+       // return  view('reclamations.manage', ['reclamations' => auth()->user()->reclamations()->get()]);
+       return  view('reclamations.manage', ['reclamations' => $reclamations]);
     }
+    public function manageUser()
+    {
+        //$reclamations = Reclamation::all();  
+        return  view('reclamations.manageUser', ['reclamations' => auth()->user()->reclamations()->get()]);
+      // return  view('reclamations.manage', ['reclamations' => $reclamations]);
+    }
+
 }

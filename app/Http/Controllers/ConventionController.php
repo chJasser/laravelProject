@@ -34,10 +34,17 @@ class ConventionController extends Controller
       
         return view('conventions.show', [
             'convention' => $convention,
-            'reclamations'=> $convention->reclamation()->get()
+            'reclamations'=> $convention->reclamation()->get(),
+            'reclamation_size'=>$convention->reclamation()->get()->count()
         ]);
     }
-
+    public function showConvention(Convention $convention)
+    {
+      
+        return view('conventions.showConvention', [
+            'convention' => $convention,
+        ]);
+    }
     public function create()
     {
         return view('conventions.create');
@@ -59,7 +66,7 @@ class ConventionController extends Controller
         $formFields['owner'] = auth()->user()->name;
         Convention::create($formFields);
 
-        return redirect('/conventions')->with('message', 'new Convention created successfully !');
+        return redirect('/conventions/manage')->with('message', 'new Convention created successfully !');
     }
     public function edit(Convention $convention)
     {
@@ -93,6 +100,8 @@ class ConventionController extends Controller
     }
     public function manage()
     {
-        return  view('conventions.manage', ['conventions' => auth()->user()->conventions()->get()]);
+        $conventions = Convention::all();
+        //return  view('conventions.manage', ['conventions' => auth()->user()->conventions()->get()]);
+        return  view('conventions.manage', ['conventions' => $conventions]);
     }
 }

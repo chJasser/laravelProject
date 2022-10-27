@@ -11,6 +11,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://kit.fontawesome.com/4c81e93c6f.js" crossorigin="anonymous"></script>
     <link href="/css/app.css" rel="stylesheet">
 
     <script>
@@ -78,28 +79,30 @@
                         <a href="/events" class="hover:text-laravel"><i class="fa-solid fa-list"></i>
                             Events</a>
                     </li>
-                    <li>
+                    <<<<<<< HEAD <li>
                         <a href="/events/participation" class="hover:text-laravel"><i class="fa-solid fa-heart"></i>
                             Participations</a>
+                        </li>
+                        =======
+                        >>>>>>> 57a43365bdca0c90258bb4057eaf702a3e17fe5b
+                    @endunless
+                    <li>
+                        <form class="inline" method="POST" action="/logout">
+                            @csrf
+                            <button type="submit">
+                                <i class="fa-solid fa-door-closed"></i> Logout
+                            </button>
+                        </form>
                     </li>
-                @endunless
-                <li>
-                    <form class="inline" method="POST" action="/logout">
-                        @csrf
-                        <button type="submit">
-                            <i class="fa-solid fa-door-closed"></i> Logout
-                        </button>
-                    </form>
-                </li>
-            @else
-                <li>
-                    <a href="/register" class="hover:text-laravel"><i class="fa-solid fa-user-plus"></i> Register</a>
-                </li>
-                <li>
-                    <a href="/login" class="hover:text-laravel"><i class="fa-solid fa-arrow-right-to-bracket"></i>
-                        Login</a>
-                </li>
-            @endauth
+                @else
+                    <li>
+                        <a href="/register" class="hover:text-laravel"><i class="fa-solid fa-user-plus"></i> Register</a>
+                    </li>
+                    <li>
+                        <a href="/login" class="hover:text-laravel"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+                            Login</a>
+                    </li>
+                @endauth
         </ul>
     </nav>
     <main>

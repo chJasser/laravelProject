@@ -5,7 +5,7 @@
             src="{{ $convention->picture ? asset('storage/' . $picture->image) : asset('images/no-image.png') }}" alt="" />
         <div>
             <h3 class="text-2xl">
-                <a href="/conventions/{{ $convention['id'] }}">{{ $convention['name'] }}</a>
+                <a href="/conventionsshow/{{ $convention['id'] }}">{{ $convention['name'] }}</a>
             </h3>
             <div class="text-xl font-bold mb-4">{{ $convention->owner }}</div>
             <div class="text-lg mt-4">
