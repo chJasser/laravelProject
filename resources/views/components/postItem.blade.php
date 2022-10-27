@@ -32,7 +32,7 @@
 
         <div class="mt-3 p-4">
 
-            <div class="flex justify-end">
+            <div style="margin-top: -20px" class="flex justify-end">
                 <form method="POST" action="/likes/{{ $post->id }}">
                     @csrf
                     <button type="submit" {{ $liked === true ? 'disabled' : '' }}>
@@ -53,7 +53,7 @@
 
 
             </div>
-            <div style="margin-top: -45px" id="accordion-collapse" data-accordion="collapse">
+            <div style="margin-top: -40px" id="accordion-collapse" data-accordion="collapse">
                 <div class="flex">
                     <button type="button" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
                         aria-controls="accordion-collapse-body-2"

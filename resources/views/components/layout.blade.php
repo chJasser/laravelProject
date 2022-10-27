@@ -39,20 +39,28 @@
                 @php
                     $userRole = App\Http\Controllers\UserController::userRole(auth()->id());
                 @endphp
+
                 @unless($userRole != 'admin')
                     <li>
-                        <a href="/backoffice/events/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage
-                            Events</a>
+                        <span class="font-bold uppercase">
+                            {{ auth()->user()->name }}
+                        </span>
                     </li>
-
                     <li>
-                        <a href="/forums/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage
-                            Forums</a>
+                        <a href="/backoffice/events/manage" class="hover:text-laravel"><i
+                                class="fa-solid fa-gear"></i>Events</a>
                     </li>
-                    <li> <a href="/conventions/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage
-                            Conventions</a></li>
-                    <li> <a href="/reclamations/manage" class="hover:text-laravel"><i class="fa fa-paper-plane"
-                                aria-hidden="true"></i>Manage Reclamations</a></li>
+                    <li>
+                        <a href="/forums/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i>Forums</a>
+                    </li>
+                    <li> <a href="/conventions/manage" class="hover:text-laravel"><i
+                                class="fa-solid fa-gear"></i>Conventions</a></li>
+                    <li> <a href="/reclamations/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"
+                                aria-hidden="true"></i>Reclamations</a></li>
+                    <li>
+                        <a href="/events/participation" class="hover:text-laravel"><i class="fa-solid fa-heart"></i>
+                            Participations</a>
+                    </li>
                 @else
                     <li>
                         <span class="font-bold uppercase">
@@ -71,24 +79,30 @@
                         <a href="/events" class="hover:text-laravel"><i class="fa-solid fa-list"></i>
                             Events</a>
                     </li>
-                @endunless
-                <li>
-                    <form class="inline" method="POST" action="/logout">
-                        @csrf
-                        <button type="submit">
-                            <i class="fa-solid fa-door-closed"></i> Logout
-                        </button>
-                    </form>
-                </li>
-            @else
-                <li>
-                    <a href="/register" class="hover:text-laravel"><i class="fa-solid fa-user-plus"></i> Register</a>
-                </li>
-                <li>
-                    <a href="/login" class="hover:text-laravel"><i class="fa-solid fa-arrow-right-to-bracket"></i>
-                        Login</a>
-                </li>
-            @endauth
+                    <<<<<<< HEAD <li>
+                        <a href="/events/participation" class="hover:text-laravel"><i class="fa-solid fa-heart"></i>
+                            Participations</a>
+                        </li>
+                        =======
+                        >>>>>>> 57a43365bdca0c90258bb4057eaf702a3e17fe5b
+                    @endunless
+                    <li>
+                        <form class="inline" method="POST" action="/logout">
+                            @csrf
+                            <button type="submit">
+                                <i class="fa-solid fa-door-closed"></i> Logout
+                            </button>
+                        </form>
+                    </li>
+                @else
+                    <li>
+                        <a href="/register" class="hover:text-laravel"><i class="fa-solid fa-user-plus"></i> Register</a>
+                    </li>
+                    <li>
+                        <a href="/login" class="hover:text-laravel"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+                            Login</a>
+                    </li>
+                @endauth
         </ul>
     </nav>
     <main>

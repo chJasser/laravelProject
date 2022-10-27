@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Event>
  */
-class EventFactory extends Factory
+class CommentsFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,13 +17,9 @@ class EventFactory extends Factory
     public function definition()
     {
         return [
-            'title' => fake()->sentence(),
-            'description' => fake()->paragraph(10),
-            'tags' => 'SPORT,MUSIC,FOOD',
-            'owner' => $this->faker->name(),
-            'location' => fake()->city(),
-            'start_date' => fake()->date(),
-            'end_date' => fake()->date(),
+
+            'content' => fake()->paragraph(10),
+
         ];
     }
 }
