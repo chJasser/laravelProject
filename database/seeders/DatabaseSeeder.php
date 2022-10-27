@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Forum;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Reclamation;
@@ -25,6 +26,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'john@gmail.com'
         ]);
 
+        // \App\Models\User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
+
+        Forum::factory(6)->create();
         Event::factory(6)->create([
             'user_id' => $user->id
         ]);

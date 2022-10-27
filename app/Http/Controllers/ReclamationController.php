@@ -24,7 +24,10 @@ class ReclamationController extends Controller
 
     public function create()
     {
-        return view('reclamations.create');
+        $conventions= ConventionController::showall();
+        return view('reclamations.create',[
+            'conventions' => $conventions
+        ]);
     }
     /**
      * Store a newly created resource in storage.
@@ -37,6 +40,7 @@ class ReclamationController extends Controller
         $formFields = $request->validate([
             'title'=>'required',
             'content'=>'required',
+            'convention_id'=>'required'
         ]);
         $formFields['user_id'] = auth()->id();
         $formFields['owner'] = auth()->user()->name;
@@ -48,9 +52,9 @@ class ReclamationController extends Controller
    
     public function show(Reclamation $reclamation)
     {
-
+      $selected = ConventionController::getByid($reclamation->convention_id);
         return view('reclamations.show', [
-            'reclamation' => $reclamation
+            'reclamation' => $reclamation,'selected'=>$selected
         ]);
     }
 
@@ -63,8 +67,9 @@ class ReclamationController extends Controller
      */
     public function edit(Reclamation $reclamation)
     {
+        $conventions = ConventionController::showall();
         return view('reclamations.edit', [
-            'reclamation' => $reclamation
+            'reclamation' => $reclamation,'conventions'=>$conventions
         ]);
     }
 

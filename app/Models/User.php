@@ -25,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -50,15 +51,24 @@ class User extends Authenticatable
     {
         return $this->hasMany(Event::class, 'user_id');
     }
-
+    public function comments()
+    {
+        return $this->hasMany(Comments::class, 'user_id');
+    }
+    public function forums()
+    {
+        return $this->hasMany(Forum::class, 'user_id');
+    }
     public function reclamations()
     {
         return $this->hasMany(Reclamation::class, 'user_id');
     }
-    public function clubs(){
-        return $this->hasMany(Club::class, 'user_id');
+    public function conventions()
+    {
+        return $this->hasMany(Convention::class, 'user_id');
     }
-    public function courses(){
-        return $this->hasMany(Course::class, 'user_id');
+    public function eventUser()
+    {
+        return $this->belongsToMany(Event::class, 'participant_event');
     }
 }

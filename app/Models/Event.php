@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Event extends Model
 {
     use HasFactory;
-    // protected $fillable = ['title', 'tags', 'website', 'description', 'owner', 'location'];
+    protected $fillable = ['title', 'tags',  'description', 'owner', 'location', 'logo', 'start_date', 'end_date'];
+    public $timestamps = false;
+
     public function scopeFilter($query, array $filter)
     {
         if ($filter['tag'] ?? false) {
@@ -26,5 +28,15 @@ class Event extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comments::class);
+    }
+
+    public function participants()
+
+    {
+        return $this->belongsToMany(User::class, 'participant_event');
     }
 }
