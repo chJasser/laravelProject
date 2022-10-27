@@ -37,9 +37,8 @@ Route::post('/subscribe', [SubscriberController::class, 'subscribe']);
 Route::POST('/dislikes/{post}', [DisLikeController::class, 'store']);
 Route::delete('/dislikes/{post}', [DisLikeController::class, 'destroy']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
 Route::get('/events', [EventController::class, 'index']);
 
 
@@ -58,7 +57,7 @@ Route::get('/login', [UserController::class, 'login'])->name('login')->middlewar
 // Log In User
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
-/////////////////////////////////////////////////////////////////////////////////////////////
+
 
 Route::get('/events', [EventController::class, 'index']);
 //meth add to database
@@ -90,9 +89,7 @@ Route::get('/conventions/{convention}/edit', [ConventionController::class, 'edit
 Route::put('/conventions/{convention}', [ConventionController::class, 'update']);
 Route::delete('/conventions/{convention}', [ConventionController::class, 'delete']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 Route::get('/reclamations/manage', [ReclamationController::class, 'manage']);
@@ -108,3 +105,6 @@ Route::get('/reclamations/{reclamation}', [ReclamationController::class, 'show']
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/', function () {
+    return redirect("/events");
+});
