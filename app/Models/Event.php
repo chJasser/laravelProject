@@ -10,7 +10,7 @@ class Event extends Model
 {
     use HasFactory;
     protected $fillable = ['title', 'tags',  'description', 'owner', 'location', 'logo', 'start_date', 'end_date'];
-    public $timestamps = false;
+
 
     public function scopeFilter($query, array $filter)
     {
@@ -24,7 +24,13 @@ class Event extends Model
                 ->orWhere('tags', 'like', '%' . request('search') . '%')
                 ->orWhere('owner', 'like', '%' . request('search') . '%');
         }
+        // if ($filter['date1'] ?? false && $filter['date2']) {
+        //     $query
+        //         ->where('end_date', 'between', request('date1'), 'and', request('date2'));
+        // }
     }
+
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

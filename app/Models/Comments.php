@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Comments extends Model
 {
     use HasFactory;
-    protected $fillable  = ['content', 'date'];
-    public $timestamps = false;
+    protected $fillable  = ['content'];
+
 
     public function Events()
     {

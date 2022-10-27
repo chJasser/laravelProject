@@ -19,7 +19,7 @@ class EventController extends Controller
 
         return view('events.index', [
             'events' => Event::latest()
-                ->filter(request(['tag', 'search']))
+                ->filter(request(['tag', 'search', 'date1', 'date2']))
                 ->paginate(4)
         ]);
     }
@@ -44,6 +44,8 @@ class EventController extends Controller
             'title' => 'required',
             'location' => 'required',
             'description' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
             'tags' => 'required',
             'logo' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
 
@@ -58,10 +60,6 @@ class EventController extends Controller
 
         return redirect('/events')->with('message', 'new event created successfully !');
     }
-
-
-
-
 
     public function edit(Event $event)
     {
@@ -80,6 +78,8 @@ class EventController extends Controller
             'title' => 'required',
             'location' => 'required',
             'description' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
             'tags' => 'required',
 
         ]);
@@ -98,7 +98,7 @@ class EventController extends Controller
             abort(403, 'Unauthorized Action');
         }
         $event->delete();
-        return redirect('/events/manage')->with('message', 'event deleted successfully !');
+        return redirect('backoffice/events/manage')->with('message', 'event deleted successfully !');
     }
 
     //show all events to manage them
@@ -112,11 +112,10 @@ class EventController extends Controller
         $formFields = $request->validate([
             'content' => 'required',
         ]);
-        $formFields['date'] = date("yyyy-MM-dd");
         $formFields['user_id'] = auth()->id();
         $formFields['event_id'] = $event;
         Comments::create($formFields);
-        return redirect('/events')->with('message', 'comment added successfully !');
+        return back()->with('message', 'comment added successfully !');
     }
     public function deleteComment(Comments $comment)
     {
@@ -131,6 +130,30 @@ class EventController extends Controller
         $user = auth()->user();
         $user->eventUser()->attach($event->id);
         return back()->with('message', 'participation succeeded !');
+    }
+    public function endparticipate(Event $event)
+    {
+        $user = auth()->user();
+        $user->eventUser()->detach($event->id);
+        return back()->with('message', 'participation canceled successfully!');
+    }
+    public function participations()
+    {
+        $events = auth()->user()->eventUser()->get();
+
+        return view('events.participations', [
+            'events' => $events,
+        ])->with('message', 'participation succeeded !');
+    }
+    public static function numbOfParticipants(Event $event)
+    {
+        $participants = $event->participants()->pluck('id')->toArray();
+        return count($participants);
+    }
+    public static function numbOfComments(Event $event)
+    {
+        $comments = $event->comments()->pluck('id')->toArray();
+        return count($comments);
     }
 }
 //F11
