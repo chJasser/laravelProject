@@ -19,6 +19,9 @@
                     @foreach ($courses as $course)
                         <tr class="border-gray-300">
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
+                            <img src="{{ asset('images/' . $course->image) }}" alt="{{ $course->name }}" class="w-20 h-20 rounded-full">
+                            </td>
+                            <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
                                 {{ $course->title }}
                             </td>
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
