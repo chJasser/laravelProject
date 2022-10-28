@@ -48,7 +48,7 @@
             <div class="row mb-3">
             				<label class="col-sm-2 col-label-form">Module</label>
             				<div class="col-sm-10">
-            				<select class="form-select" aria-label="Default select example" name="modules_id">
+            				<select class="border border-gray-200 rounded p-2 w-full" aria-label="Default select example" name="modules_id">
             					<option selected>Open this select menu</option>
             					@if(count($modules) > 0)
 
