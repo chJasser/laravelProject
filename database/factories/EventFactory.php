@@ -18,11 +18,12 @@ class EventFactory extends Factory
     {
         return [
             'title' => fake()->sentence(),
-            'description' => fake()->paragraph(7),
+            'description' => fake()->paragraph(10),
             'tags' => 'SPORT,MUSIC,FOOD',
             'owner' => $this->faker->name(),
             'location' => fake()->city(),
-            'website' => fake()->companyEmail(),
+            'start_date' => fake()->date(),
+            'end_date' => fake()->date(),
         ];
     }
 }

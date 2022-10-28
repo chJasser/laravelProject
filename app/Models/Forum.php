@@ -11,7 +11,12 @@ class Forum extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'forum_id');
     }
 
     public function scopeFilter($query, array $filter)
@@ -24,7 +29,8 @@ class Forum extends Model
                 ->where('title', 'like', '%' . request('search') . '%')
                 ->orWhere('description', 'like' . '%', request('search') . '%')
                 ->orWhere('tags', 'like', '%' . request('search') . '%')
-                ->orWhere('desinedTo', 'like', '%' . request('search') . '%');
+                ->orWhere('designedTo', 'like', '%' . request('search') . '%');
         }
     }
+
 }

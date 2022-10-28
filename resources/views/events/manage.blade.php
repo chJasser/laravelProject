@@ -15,6 +15,15 @@
         </div>
 
         <table class="w-full table-auto rounded-sm">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Owner</th>
+                    <th>Location</th>
+                    <th>Starting Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
             <tbody>
                 @unless($events->isEmpty())
                     @foreach ($events as $event)
@@ -23,16 +32,25 @@
                                 <a href="/events/{{ $event->id }}"> {{ $event->title }} </a>
                             </td>
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-                                <a href="/backoffice/events/{{ $event->id }}/edit"
-                                    class="text-blue-400 px-6 py-2 rounded-xl"><i class="fa-solid fa-pen-to-square"></i>
-                                    Edit</a>
+                                {{ $event->owner }}
                             </td>
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
+                                {{ $event->location }}
+                            </td>
+                            <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
+                                {{ $event->start_date }}
+                            </td>
+                            <td class="px-4 py-8 border-t border-b border-gray-300 text-lg flex">
+
                                 <form method="POST" action="/backoffice/events/{{ $event->id }}">
                                     @csrf
                                     @method('DELETE')
                                     <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete</button>
+
                                 </form>
+                                <a href="/backoffice/events/{{ $event->id }}/edit"
+                                    class="text-blue-400 px-6 py-2 rounded-xl"><i class="fa-solid fa-pen-to-square"></i>
+                                    Edit</a>
                             </td>
                         </tr>
                     @endforeach
