@@ -15,8 +15,7 @@ use App\Http\Controllers\LikeConventionController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\SubscriberController;
-use App\Models\DisLike;
-use App\Models\Like;
+
 
 Route::get('/forums', [forumController::class, 'index'])->name("indexForum");
 Route::get('/forums/manage', [forumController::class, 'manage'])->middleware('auth');
@@ -147,6 +146,7 @@ Route::post('/reclamations/manage', [ReclamationController::class, 'store']);
 Route::get('/reclamations/{reclamation}/edit', [ReclamationController::class, 'edit']);
 Route::put('/reclamations/{reclamation}', [ReclamationController::class, 'update']);
 Route::get('/reclamations/{reclamation}', [ReclamationController::class, 'show']);
+
 
 
 

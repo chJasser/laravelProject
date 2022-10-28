@@ -86,6 +86,11 @@
                                 </form>
                             </td>
                             @endif
+                            <td>
+                                <a href="/courses/{{ $course->id }}" class="mr-5 font-bold py-2 px-4 rounded">
+                                <i class="fa-sharp fa-solid fa-circle-info"></i> Details
+                                   </a>
+                            </td>
 
 
                         </tr>

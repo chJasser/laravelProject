@@ -15,11 +15,8 @@ class ClubController extends Controller
      */
     public function index()
     {
-        return view('clubs.index', [
-            'clubs' => club::latest()
-                ->filter(request(['search']))
-                ->paginate(4)
-        ]);
+        $clubs = club::all();
+        return view('clubs.index', compact('clubs'));
     }
 
     public function create()
@@ -145,5 +142,7 @@ class ClubController extends Controller
         $members = $club->users()->get();
         return view('clubs.members', ['users' =>$members]);
     }
+
+
 }
 
