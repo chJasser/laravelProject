@@ -61,6 +61,22 @@
                         <a href="/events/participation" class="hover:text-laravel"><i class="fa-solid fa-heart"></i>
                             Participations</a>
                     </li>
+                    <li>
+                        <a href="/courses/manage" class="hover:text-laravel"><i class="fa fa-book" aria-hidden="true"></i>
+
+                            Courses</a>
+                    </li>
+                    <li>
+                        <a href="/clubs/manage" class="hover:text-laravel"><i class="fa fa-paint-brush" aria-hidden="true"></i>
+
+                            Clubs</a>
+                    </li>
+                    <li>
+                        <a href="/modules/manage" class="hover:text-laravel">
+                            <i class="fa fa-book" aria-hidden="true"></i>
+
+                            Modules</a>
+                    </li>
                 @else
                     <li>
                         <span class="font-bold uppercase">
@@ -79,29 +95,28 @@
                         <a href="/events" class="hover:text-laravel"><i class="fa-solid fa-list"></i>
                             Events</a>
                     </li>
-                  <li>
+                    <li>
                         <a href="/events/participation" class="hover:text-laravel"><i class="fa-solid fa-heart"></i>
                             Participations</a>
-                        </li>
-
-                    @endunless
-                    <li>
-                        <form class="inline" method="POST" action="/logout">
-                            @csrf
-                            <button type="submit">
-                                <i class="fa-solid fa-door-closed"></i> Logout
-                            </button>
-                        </form>
                     </li>
-                @else
-                    <li>
-                        <a href="/register" class="hover:text-laravel"><i class="fa-solid fa-user-plus"></i> Register</a>
-                    </li>
-                    <li>
-                        <a href="/login" class="hover:text-laravel"><i class="fa-solid fa-arrow-right-to-bracket"></i>
-                            Login</a>
-                    </li>
-                @endauth
+                @endunless
+                <li>
+                    <form class="inline" method="POST" action="/logout">
+                        @csrf
+                        <button type="submit">
+                            <i class="fa-solid fa-door-closed"></i> Logout
+                        </button>
+                    </form>
+                </li>
+            @else
+                <li>
+                    <a href="/register" class="hover:text-laravel"><i class="fa-solid fa-user-plus"></i> Register</a>
+                </li>
+                <li>
+                    <a href="/login" class="hover:text-laravel"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        Login</a>
+                </li>
+            @endauth
         </ul>
     </nav>
     <main>

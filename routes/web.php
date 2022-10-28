@@ -1,17 +1,18 @@
 <?php
 
-
+use App\Http\Controllers\ClubController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\forumController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ConventionController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DisLikeController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\DisLikeConventionController;
 use App\Http\Controllers\LikeConventionController;
-
+use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\SubscriberController;
 use App\Models\DisLike;
@@ -57,6 +58,37 @@ Route::get('/events', [EventController::class, 'index']);
 //meth add to database
 
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
+Route::post('/register', [UserController::class, 'store'])->middleware('guest');
+//club
+Route::get('/clubs/manage', [ClubController::class, 'manage']);
+Route::get('/clubs/create', [clubController::class, 'create']);
+Route::delete('/clubs/{club}', [clubController::class, 'delete']);
+Route::post('/clubs/manage', [clubController::class, 'store']);
+Route::get('/clubs/{club}/edit', [clubController::class, 'edit']);
+Route::put('/clubs/{club}', [clubController::class, 'update']);
+Route::get('/clubs/{club}', [clubController::class, 'show']);
+Route::get('/clubs/{club}/members', [clubController::class, 'members']);
+Route::get('/clubs/{club}/join', [clubController::class, 'join']);
+Route::get('/clubs/{club}/leave', [clubController::class, 'leave']);
+//course
+Route::get('/courses/manage', [CourseController::class, 'manage']);
+Route::get('/courses/create', [courseController::class, 'create']);
+Route::delete('/courses/{course}', [courseController::class, 'delete']);
+Route::post('/courses/manage', [courseController::class, 'store']);
+Route::get('/courses/{course}/edit', [courseController::class, 'edit']);
+Route::put('/courses/{course}', [courseController::class, 'update']);
+Route::get('/courses/{course}', [courseController::class, 'show']);
+
+//Modules
+Route::get('/modules/manage', [ModuleController::class, 'manage']);
+Route::get('/modules/create', [ModuleController::class, 'create']);
+Route::delete('/modules/{module}', [ModuleController::class, 'delete']);
+Route::post('/modules/manage', [ModuleController::class, 'store']);
+Route::get('/modules/{module}/edit', [ModuleController::class, 'edit']);
+Route::put('/modules/{module}', [ModuleController::class, 'update']);
+Route::get('/modules/{module}', [ModuleController::class, 'show']);
+Route::get('/modules/{module}/courses', [ModuleController::class, 'courses']);
+
 // Create New User
 Route::post('/users', [UserController::class, 'store']);
 
@@ -114,6 +146,8 @@ Route::post('/reclamations/manage', [ReclamationController::class, 'store']);
 Route::get('/reclamations/{reclamation}/edit', [ReclamationController::class, 'edit']);
 Route::put('/reclamations/{reclamation}', [ReclamationController::class, 'update']);
 Route::get('/reclamations/{reclamation}', [ReclamationController::class, 'show']);
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////

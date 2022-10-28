@@ -113,6 +113,7 @@ class ReclamationController extends Controller
        // return  view('reclamations.manage', ['reclamations' => auth()->user()->reclamations()->get()]);
        return  view('reclamations.manage', ['reclamations' => $reclamations]);
     }
+
     public function manageUser()
     {
         //$reclamations = Reclamation::all();

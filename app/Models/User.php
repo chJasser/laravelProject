@@ -5,6 +5,8 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Event;
 use App\Models\Reclamation;
+use App\Models\Course;
+use App\Models\Club;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -90,6 +92,12 @@ class User extends Authenticatable
         return $this->hasMany(Post::class, 'user_id');
     }
 
+    public function clubs(){
+        return $this->hasMany(Club::class, 'user_id');
+    }
+    public function courses(){
+        return $this->hasMany(Course::class, 'user_id');
+    }
     public function conventions()
     {
         return $this->hasMany(Convention::class, 'user_id');
@@ -99,5 +107,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Event::class, 'participant_event');
     }
-
+    public function clubUser()
+    {
+        return $this->belongsToMany(Club::class, 'user_club');
+    }
 }

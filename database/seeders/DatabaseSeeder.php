@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Comments;
 use App\Models\Reclamation;
+use App\Models\Club;
+use App\Models\Course;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -39,6 +41,12 @@ class DatabaseSeeder extends Seeder
             'event_id' => rand($min = 1, $max = 6)
         ]);
         Reclamation::factory(6)->create([
+            'user_id' => $user->id
+        ]);
+        Club::factory(6)->create([
+            'user_id' => $user->id
+        ]);
+        Course::factory(6)->create([
             'user_id' => $user->id
         ]);
     }
