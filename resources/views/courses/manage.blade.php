@@ -8,6 +8,10 @@
             <h1 class="text-3xl text-center font-bold my-6 uppercase">
                 Manage courses
             </h1>
+            <link rel="icon" href="images/favicon.ico" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
         </header>
 
         <!-- @unless($courses->isEmpty())
@@ -70,6 +74,11 @@
                                 <a href="/courses/{{ $course->id }}/edit" class="text-blue-400 px-6 py-2 rounded-xl"><i
                                         class="fa-solid fa-pen-to-square"></i>
                                     Edit</a>
+                            </td>
+                            <td>
+                            <a href="/courses/{{ $course->id }}" class="mr-5 font-bold py-2 px-4 rounded">
+                            <i class="fa-sharp fa-solid fa-circle-info"></i> Details
+                               </a>
                             </td>
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
                                 <form method="POST" action="/courses/{{ $course->id }}">

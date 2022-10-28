@@ -32,7 +32,8 @@
         <ul class="flex space-x-6 mr-6 text-lg">
 
             @auth
-
+            <li> <a href="/reclamations/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"
+                                aria-hidden="true"></i>
                         Reclamations</a>
                 </li>
                 <li>
@@ -71,6 +72,7 @@
 
             @else
             <li>
+            <i class="fa-solid fa-user"></i>
                 <span class="font-bold uppercase">
                     {{ auth()->user()->name }}
                 </span>
