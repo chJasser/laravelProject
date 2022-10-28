@@ -27,7 +27,7 @@
                 @endunless
 
                 <img class="w-48 mr-6 mb-6"
-                    src="{{ $event->logo ? asset('/storage/app/public/logos/' . $event->logo) : asset('images/no-image.png') }}"
+                    src="{{ $event->logo ? asset('storage/' . $event->logo) : asset('images/no-image.png') }}"
                     alt="" />
 
                 <h3 class="text-2xl mb-2">{{ $event->title }}</h3>
