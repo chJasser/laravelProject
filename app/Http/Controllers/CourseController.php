@@ -6,6 +6,7 @@ use App\Models\Course;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Models\Module;
 class CourseController extends Controller
 {
     /**
@@ -38,7 +39,8 @@ class CourseController extends Controller
             'Personal Development',
             'Teaching & Academics',
         ];
-        return view('courses.create', compact('categories'));
+        $modules = Module::latest()->get();
+        return view('courses.create', compact('categories'),compact('modules'));
     }
     /**
      * Store a newly created resource in storage.
@@ -62,6 +64,7 @@ class CourseController extends Controller
         }
         $formFields['user_id'] = auth()->id();
         Course::create($formFields);
+        
         return redirect('/courses/manage')->with('message', 'new course created successfully !');
     }
 

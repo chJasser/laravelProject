@@ -10,6 +10,7 @@ use App\Http\Controllers\ConventionController;
 use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ModuleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +40,11 @@ Route::post('/courses/manage', [courseController::class, 'store']);
 Route::get('/courses/{course}/edit', [courseController::class, 'edit']);
 Route::put('/courses/{course}', [courseController::class, 'update']);
 Route::get('/courses/{course}', [courseController::class, 'show']);
+
+//Modules
+Route::get('/modules/manage', [ModuleController::class, 'index']);
+Route::get('/modules/create', [ModuleController::class, 'create']);
+
 // Create New User
 Route::post('/users', [UserController::class, 'store']);
 
