@@ -2,9 +2,12 @@
     <x-card class="p-10">
 
         <header>
+            @if (auth()->user()->role=='admin')
             <a href="/courses/create" class="btn btn-success btn-sm" title="Add New Reclamation">
                 <i class="fa fa-plus" aria-hidden="true"></i> Add New
             </a>
+            @endif
+
             <h1 class="text-3xl text-center font-bold my-6 uppercase">
                 Manage courses
             </h1>
@@ -44,7 +47,10 @@
                     <th>Description</th>
                     <th>Categorie</th>
                     <th>Owner</th>
+                    @if (auth()->user()->role=='admin')
                     <th>Actions</th>
+                    @endif
+
                 </tr>
             </thead>
             <tbody>
@@ -66,6 +72,7 @@
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
                                 {{ $course->user->name }}
                             </td>
+                            @if (auth()->user()->role=='admin')
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
                                 <a href="/courses/{{ $course->id }}/edit" class="text-blue-400 px-6 py-2 rounded-xl"><i
                                         class="fa-solid fa-pen-to-square"></i>
@@ -78,6 +85,9 @@
                                     <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete</button>
                                 </form>
                             </td>
+                            @endif
+
+
                         </tr>
                     @endforeach
                 @else

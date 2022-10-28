@@ -70,6 +70,7 @@ Route::get('/clubs/{club}', [clubController::class, 'show']);
 Route::get('/clubs/{club}/members', [clubController::class, 'members']);
 Route::get('/clubs/{club}/join', [clubController::class, 'join']);
 Route::get('/clubs/{club}/leave', [clubController::class, 'leave']);
+
 //course
 Route::get('/courses/manage', [CourseController::class, 'manage']);
 Route::get('/courses/create', [courseController::class, 'create']);

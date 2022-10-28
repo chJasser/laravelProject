@@ -2,9 +2,14 @@
     <x-card class="p-10">
 
         <header>
+            @if (auth()->user()->role == 'admin')
+                <a href="/clubs/manage" class="inline-block text-black ml-4 mb-4"><i class="fa-solid fa-arrow-left"></i> Back
+                </a>
+
             <a href="/clubs/create" class="btn btn-success btn-sm" title="Add New Club">
                 <i class="fa fa-plus" aria-hidden="true"></i> Add New
             </a>
+            @endif
             <h1 class="text-3xl text-center font-bold my-6 uppercase">
                 Manage Clubs
             </h1>
@@ -20,15 +25,18 @@
                <div class="flex justify-between">
                 <div class="font-bold text-xl mb-2">Name : {{$club->name}}</div>
                     <div class="text-white font-bold py-2 px-4 rounded" >
-                    @if ($club->users->contains(auth()->user()))
-                    <a href="/clubs/{{ $club->id }}/leave" class="bg-red-500 hover:bg-red-700 text-white-400 px-6 py-2 px-4 rounded"><i
-                        class="fa-solid fa-pen-to-square"></i>
-                    Leave</a>
-                                @else
-                                    <a href="/clubs/{{ $club->id }}/join" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"><i
-                                            class="fa-solid fa-pen-to-square"></i>
-                                        Join</a>
-                                @endif
+                        @if(auth()->user()->role == 'user')
+                        @if ($club->users->contains(auth()->user()))
+                        <a href="/clubs/{{ $club->id }}/leave" class="bg-red-500 hover:bg-red-700 text-white-400 px-6 py-2 px-4 rounded"><i
+                            class="fa-solid fa-pen-to-square"></i>
+                        Leave</a>
+                                    @else
+                                        <a href="/clubs/{{ $club->id }}/join" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"><i
+                                                class="fa-solid fa-pen-to-square"></i>
+                                            Join</a>
+                                    @endif
+                        @endif
+
                     </div>
                </div>
                 <p class="text-gray-700 text-base mb-1">
@@ -41,16 +49,20 @@
                                   {{$club->users->count()}}  Members</a>
                 </button>
             </div>
+            @if (auth()->user()->role == 'admin')
             <div class="px-6 pt-2 pb-2 flex flex-row mr-5 items-center">
-            <a href="/clubs/{{ $club->id }}/edit" class="mr-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><i
-                                class="fa-solid fa-pen-to-square"></i>
-                            Edit</a>
-                <form method="POST" action="/clubs/{{ $club->id }}">
-                @csrf
-                @method('DELETE')
-                <button class="ml-5 mb-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"><i class="fa-solid fa-trash"></i> Delete</button>
-                </form>
-            </div>
+                <a href="/clubs/{{ $club->id }}/edit" class="mr-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><i
+                                    class="fa-solid fa-pen-to-square"></i>
+                                Edit</a>
+                    <form method="POST" action="/clubs/{{ $club->id }}">
+                    @csrf
+                    @method('DELETE')
+                    <button class="ml-5 mb-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </form>
+                </div>
+
+            @endif
+
         </div>
         @endforeach
         </div>

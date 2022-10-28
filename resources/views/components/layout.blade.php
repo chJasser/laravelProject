@@ -99,6 +99,22 @@
                         <a href="/events/participation" class="hover:text-laravel"><i class="fa-solid fa-heart"></i>
                             Participations</a>
                     </li>
+                    <li>
+                        <a href="/courses/manage" class="hover:text-laravel"><i class="fa fa-book" aria-hidden="true"></i>
+
+                            Courses</a>
+                    </li>
+                    <li>
+                        <a href="/clubs/manage" class="hover:text-laravel"><i class="fa fa-paint-brush" aria-hidden="true"></i>
+
+                            Clubs</a>
+                    </li>
+                    <li>
+                        <a href="/modules/manage" class="hover:text-laravel">
+                            <i class="fa fa-book" aria-hidden="true"></i>
+
+                            Modules</a>
+                    </li>
                 @endunless
                 <li>
                     <form class="inline" method="POST" action="/logout">
