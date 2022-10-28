@@ -45,7 +45,7 @@
             </div>
 
 
-            <div class="row mb-3">
+            <div class="row mb-5">
             				<label class="col-sm-2 col-label-form">Module</label>
             				<div class="col-sm-10">
             				<select class="form-select" aria-label="Default select example" name="module_id" required>
@@ -61,6 +61,9 @@
             </option>
             					@endif
             					</select>
+                                @error('module_id')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
             				</div>
             			</div>
 

@@ -42,6 +42,10 @@ class ClubController extends Controller
             'category' => 'required',
 
 
+        ],
+        [
+            'name.required' => 'Name is required!!!',
+            'description.required' => 'Description is required!!'
         ]);
 
         if ($request->hasFile('logo')) {

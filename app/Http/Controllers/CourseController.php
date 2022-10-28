@@ -55,6 +55,10 @@ class CourseController extends Controller
             'description'=>'required',
             "category"=>'required',
             "module_id"=>'required',
+        ],[
+            'title.required' => 'Title is required!!!',
+            'description.required' => 'Description is required!!',
+            "category"=>'required'
         ]);
         if($request->hasFile('image')){
             $image = $request->file('image');
