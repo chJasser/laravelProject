@@ -72,6 +72,7 @@ Route::get('/clubs/{club}', [clubController::class, 'show']);
 Route::get('/clubs/{club}/members', [clubController::class, 'members']);
 Route::get('/clubs/{club}/join', [clubController::class, 'join']);
 Route::get('/clubs/{club}/leave', [clubController::class, 'leave']);
+
 //course
 Route::get('/courses/manage', [courseController::class, 'manage']);
 Route::get('/courses/create', [courseController::class, 'create']);
@@ -148,6 +149,7 @@ Route::post('/reclamations/manage', [ReclamationController::class, 'store']);
 Route::get('/reclamations/{reclamation}/edit', [ReclamationController::class, 'edit']);
 Route::put('/reclamations/{reclamation}', [ReclamationController::class, 'update']);
 Route::get('/reclamations/{reclamation}', [ReclamationController::class, 'show']);
+
 
 
 

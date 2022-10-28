@@ -21,5 +21,13 @@ class Club extends Model
     {
         return $this->belongsToMany(User::class);
     }
+    protected $fillable = [
+        'name',
+        'description',
+        'email',
+        'category',
+        'logo',
+        'user_id',
+    ];
 
 }
