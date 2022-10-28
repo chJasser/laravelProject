@@ -54,6 +54,7 @@ class CourseController extends Controller
             'title'=>'required',
             'description'=>'required',
             "category"=>'required',
+            "module_id"=>'required',
         ]);
         if($request->hasFile('image')){
             $image = $request->file('image');
@@ -63,8 +64,9 @@ class CourseController extends Controller
             $formFields['image'] = $name;
         }
         $formFields['user_id'] = auth()->id();
+        $formFields['module_id'] = $request->module_id;
         Course::create($formFields);
-        
+
         return redirect('/courses/manage')->with('message', 'new course created successfully !');
     }
 
