@@ -2,11 +2,11 @@
     <x-card class="p-10">
 
         <header>
-            <a href="/courses/create" class="btn btn-success btn-sm" title="Add New Reclamation">
+            <a href="/modules/create" class="btn btn-success btn-sm" title="Add New Reclamation">
                 <i class="fa fa-plus" aria-hidden="true"></i> Add New
             </a>
             <h1 class="text-3xl text-center font-bold my-6 uppercase">
-                Manage courses
+                Manage Modules
             </h1>
         </header>
 
@@ -20,21 +20,33 @@
                 </tr>
             </thead>
             <tbody>
-                @unless($data->isEmpty())
-                    @foreach ($data as $module)
+                @unless($modules->isEmpty())
+                    @foreach ($modules as $module)
                         <tr class="border-gray-300">
                             <td>
                                 <img src="{{ asset('images/' . $module->image) }}" alt="{{ $module->name }}" class="w-20 h-20 rounded-full">
                             </td>
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-                                <a href="/courses/{{ $course->id }}"> {{ $module->name }} </a>
+                                <a href="/modules/{{ $module->id }}"> {{ $module->name }} </a>
                             </td>
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
                                  {{ $module->description }}
                             </td>
-                          
+                            
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-                                <form method="POST" action="/courses/{{ $course->id }}">
+                                <a href="/modules/{{ $module->id }}/courses" class="text-blue-400 px-6 py-2 rounded-xl"><i
+                                        class="fa-solid fa-pen-to-square"></i>
+                                        {{$module->courses->count()}} 
+                                  Courses</a>
+                            </td>
+
+                            <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
+                                <a href="/modules/{{ $module->id }}/edit" class="text-blue-400 px-6 py-2 rounded-xl"><i
+                                        class="fa-solid fa-pen-to-square"></i>
+                                    Edit</a>
+                            </td>
+                            <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
+                                <form method="POST" action="/modules/{{ $module->id }}">
                                     @csrf
                                     @method('DELETE')
                                     <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete</button>
@@ -45,7 +57,7 @@
                 @else
                     <tr class="border-gray-300">
                         <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-                            <p class="text-center">No courses Found</p>
+                            <p class="text-center">No modules Found</p>
                         </td>
                     </tr>
                 @endunless
