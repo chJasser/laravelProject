@@ -16,10 +16,14 @@
                 @unless($check == true)
                     <form action="/participate/{{ $event->id }}" method="POST">
                         @csrf
-                        <button class="text-green-500 ml-5 "><i class="fa-solid fa-plus"></i>Part</button>
+                        <button class="text-2xl mb-2"><i class="fa-solid fa-plus"></i>Participate</button>
                     </form>
                 @else
-                    <h3 class="text-2xl mb-2">you're already a participant</h3>
+                    <h3 class="text-2xl mb-2">you're a participant</h3>
+                    <form action="/endparticipate/{{ $event->id }}" method="POST">
+                        @csrf
+                        <button class="text-2xl mb-2"><i class="fa-solid fa-minus"></i> Cancel Participation</button>
+                    </form>
                 @endunless
 
                 <img class="w-48 mr-6 mb-6"
@@ -51,7 +55,7 @@
                                 <header class="text-center">
                                     <h4 class="text-2xl font-bold uppercase mb-1">
                                         @php
-                                            $username = App\Http\Controllers\CommentController::userName($comment->user_id);
+                                            $username = App\Http\Controllers\CommentsController::userName($comment->user_id);
                                         @endphp
                                         {{ $username }}
                                     </h4>

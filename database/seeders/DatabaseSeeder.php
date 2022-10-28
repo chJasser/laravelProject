@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Forum;
 use App\Models\User;
 use App\Models\Event;
+use App\Models\Comments;
 use App\Models\Reclamation;
 use App\Models\Club;
 use App\Models\Course;
@@ -23,17 +24,21 @@ class DatabaseSeeder extends Seeder
     {
         $user = User::factory()->create([
             'name' => 'John Doe',
-            'email' => 'john@gmail.com'
+            'email' => 'admin@gmail.com',
+            'password' => 'hello',
+            'role' => 'admin'
+
         ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+
 
         Forum::factory(6)->create();
         Event::factory(6)->create([
             'user_id' => $user->id
+        ]);
+        Comments::factory(10)->create([
+            'user_id' => $user->id,
+            'event_id' => rand($min = 1, $max = 6)
         ]);
         Reclamation::factory(6)->create([
             'user_id' => $user->id

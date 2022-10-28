@@ -7,8 +7,8 @@
         <x-card class="p-10 ">
             <div class="flex flex-col items-center justify-center text-center">
             <h1 class="text-2xl mb-2"> <span class="text-3xl font-bold" style='color:red'>Convention Name :</span> {{ $selected->name }}</h1>
-                <h3 class="text-2xl mb-2">{{ $reclamation->title }}</h3>
-                <div class="text-xl font-bold mb-4">{{ $reclamation->owner }}</div>
+                <h3 class="text-2xl mb-2"> {{ $selected->name }}</h3>
+            <h3 class="text-2xl mb-2">  {{ $reclamation->owner }}</h3>
                 <div class="border border-gray-200 w-full mb-6"></div>
                 <div>
                     <h3 class="text-3xl font-bold mb-4">

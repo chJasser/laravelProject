@@ -17,7 +17,8 @@
                     <th>name</th>
                     <th>Description</th>
                     <th>Owner</th>
-                    <th>Actions</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>

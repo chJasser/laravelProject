@@ -42,7 +42,7 @@
             </div>
             <div class="mb-6">
                 <label for="end_date" class="inline-block text-lg mb-2">
-                    Start Date
+                    Ending Date
                 </label>
                 <input type="date" value="{{ old('end_date') }}" id="end_date"
                     class="border border-gray-200 rounded p-2 w-full" name="end_date" />
