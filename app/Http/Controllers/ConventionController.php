@@ -21,7 +21,7 @@ class ConventionController extends Controller
     }
     public static function showAll()
     {
-        
+
         $conventions = Convention::all();
        return $conventions;
     }
@@ -31,7 +31,7 @@ class ConventionController extends Controller
     }
     public function show(Convention $convention)
     {
-      
+
         return view('conventions.show', [
             'convention' => $convention,
             'reclamations'=> $convention->reclamation()->get(),
@@ -40,7 +40,7 @@ class ConventionController extends Controller
     }
     public function showConvention(Convention $convention)
     {
-      
+
         return view('conventions.showConvention', [
             'convention' => $convention,
         ]);
@@ -56,10 +56,10 @@ class ConventionController extends Controller
             'description' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-           
+
         ]);
-        if ($request->hasFile('logo')) {
-            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        if ($request->hasFile('picture')) {
+            $formFields['picture'] = $request->file('picture')->store('logos', 'public');
         }
 
         $formFields['user_id'] = auth()->id();
@@ -85,7 +85,7 @@ class ConventionController extends Controller
             'start_date' => 'required',
             'end_date' => 'required',
         ]);
-       
+
         $convention->update($formFields);
 
         return redirect('/conventions/manage')->with('message', 'Convention updated successfully !');
