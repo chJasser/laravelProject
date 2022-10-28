@@ -45,8 +45,14 @@ Route::put('/courses/{course}', [courseController::class, 'update']);
 Route::get('/courses/{course}', [courseController::class, 'show']);
 
 //Modules
-Route::get('/modules/manage', [ModuleController::class, 'index']);
+Route::get('/modules/manage', [ModuleController::class, 'manage']);
 Route::get('/modules/create', [ModuleController::class, 'create']);
+Route::delete('/modules/{module}', [ModuleController::class, 'delete']);
+Route::post('/modules/manage', [ModuleController::class, 'store']);
+Route::get('/modules/{module}/edit', [ModuleController::class, 'edit']);
+Route::put('/modules/{module}', [ModuleController::class, 'update']);
+Route::get('/modules/{module}', [ModuleController::class, 'show']);
+Route::get('/modules/{module}/courses', [ModuleController::class, 'courses']);
 
 // Create New User
 Route::post('/users', [UserController::class, 'store']);

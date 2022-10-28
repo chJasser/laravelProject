@@ -53,7 +53,7 @@
             					@if(count($modules) > 0)
 
             				@foreach($modules as $row)
-            					<option value="{{ $row->id}}" name="id">{{ $row->nom_modules }}</option>
+            					<option value="{{ $row->id}}" name="id">{{ $row->name }}</option>
             					>
             					@endforeach
             				@else
