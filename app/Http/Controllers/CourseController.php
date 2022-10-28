@@ -24,7 +24,21 @@ class CourseController extends Controller
 
     public function create()
     {
-        return view('courses.create');
+        $categories = [
+            'Web Development',
+            'Mobile Development',
+            'Design',
+            'Marketing',
+            'Business',
+            'Photography',
+            'Music',
+            'Lifestyle',
+            'IT & Software',
+            'Office Productivity',
+            'Personal Development',
+            'Teaching & Academics',
+        ];
+        return view('courses.create', compact('categories'));
     }
     /**
      * Store a newly created resource in storage.
@@ -37,9 +51,16 @@ class CourseController extends Controller
         $formFields = $request->validate([
             'title'=>'required',
             'description'=>'required',
+            "category"=>'required',
         ]);
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $formFields['image'] = $name;
+        }
         $formFields['user_id'] = auth()->id();
-        $formFields['owner'] = auth()->user()->name;
         Course::create($formFields);
         return redirect('/courses/manage')->with('message', 'new course created successfully !');
     }
@@ -62,8 +83,22 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
+        $categories = [
+            'Web Development',
+            'Mobile Development',
+            'Design',
+            'Marketing',
+            'Business',
+            'Photography',
+            'Music',
+            'Lifestyle',
+            'IT & Software',
+            'Office Productivity',
+            'Personal Development',
+            'Teaching & Academics',
+        ];
         return view('courses.edit', [
-            'course' => $course
+            'course' => $course,"categories"=>$categories
         ]);
     }
 
@@ -82,8 +117,17 @@ class CourseController extends Controller
         $formFields = $request->validate([
             'title'=>'required',
             'description'=>'required',
+            "category"=>'required',
+
         ]);
        // dd($course);
+       if($request->hasFile('image')){
+        $image = $request->file('image');
+        $name = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('/images');
+        $image->move($destinationPath, $name);
+        $formFields['image'] = $name;
+    }
         $course->update($formFields);
 
         return redirect('/courses/manage')->with('message', 'course updated successfully !');

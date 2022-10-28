@@ -77,4 +77,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Event::class, 'participant_event');
     }
+    public function clubUser()
+    {
+        return $this->belongsToMany(Club::class, 'user_club');
+    }
 }

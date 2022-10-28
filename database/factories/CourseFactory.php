@@ -17,9 +17,9 @@ class CourseFactory extends Factory
     public function definition()
     {
         return [
-            'title' => fake()->sentence(),
-            'description' => fake()->paragraph(7),
-            'owner' => $this->faker->name(),
+            'title' => faker()->sentence(),
+            'description' => faker()->paragraph(7),
+            'category'=>faker()->randomElement(['web development','Business','marketing','design']),
         ];
     }
 }

@@ -24,7 +24,8 @@ class ClubController extends Controller
 
     public function create()
     {
-        return view('clubs.create');
+        $categories =["music", "sport", "art", "robotic","cinema", "other"];
+        return view('clubs.create', compact('categories'));
     }
     /**
      * Store a newly created resource in storage.
@@ -34,14 +35,27 @@ class ClubController extends Controller
      */
     public function store(Request $request)
     {
-        $formFields = $request->validate([
-            'name'=>'required',
-            'description'=>'required',
+        $attributes = request()->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'email' => 'required|email|unique:clubs,email',
+            'category' => 'required',
+
+
         ]);
-        $formFields['user_id'] = auth()->id();
-        $formFields['owner'] = auth()->user()->name;
-        club::create($formFields);
-        return redirect('/clubs/manage')->with('message', 'new club created successfully !');
+
+        if ($request->hasFile('logo')) {
+            $image = $request->file('logo');
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $attributes['logo'] = $name;
+        }
+
+        $attributes['user_id'] = auth()->id();
+        club::create($attributes);
+        return redirect('/clubs/manage')->with('success', 'Club created successfully.');
+
     }
 
 
@@ -62,8 +76,9 @@ class ClubController extends Controller
      */
     public function edit(club $club)
     {
+        $categories =["music", "sport", "art", "robotic","cinema", "other"];
         return view('clubs.edit', [
-            'club' => $club
+            'club' => $club,'categories' => $categories
         ]);
     }
 
@@ -82,8 +97,16 @@ class ClubController extends Controller
         $formFields = $request->validate([
             'name'=>'required',
             'description'=>'required',
+            'email' => ['required', 'email', Rule::unique('clubs')->ignore($club->id)],
+            'category' => 'required',
         ]);
-       // dd($club);
+        if($request->hasFile('logo')){
+            $image = $request->file('logo');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $formFields['logo'] = $name;
+        }
         $club->update($formFields);
 
         return redirect('/clubs/manage')->with('message', 'club updated successfully !');

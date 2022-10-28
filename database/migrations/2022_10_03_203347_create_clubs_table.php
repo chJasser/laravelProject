@@ -18,8 +18,11 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->longText('description');
-            $table->string('owner');
             $table->timestamps();
+            $table->string('logo')->nullable();
+            $table->string('website')->nullable();
+            $table->string('email')->required()->unique();
+            $table->string('category')->required();
         });
     }
 

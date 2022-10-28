@@ -17,10 +17,12 @@ class ClubFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->sentence(),
-            'description' => fake()->paragraph(7),
-            'owner' => $this->faker->name(),
 
+            'name' => $this->faker->name,
+            'description' => $this->faker->text,
+            'logo' => $this->faker->word,
+            'website' => $this->faker->word,
+            'email' => $this->fake->safeEmail(),
         ];
     }
 }

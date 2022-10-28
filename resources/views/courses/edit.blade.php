@@ -7,7 +7,7 @@
             <p class="mb-4">Edit course</p>
         </header>
 
-        <form action="/courses/{{ $course->id }}" method="POST" >
+        <form action="/courses/{{ $course->id }}" method="POST" enctype="multipart/form-data" >
             @csrf
             @method('PUT')
             <div class="mb-6">
@@ -29,9 +29,25 @@
                 @enderror
             </div>
 
-
-
-
+           <div class="mb-6">
+                <label for="category" class="inline-block text-lg mb-2">Category</label>
+                <select name="category" id="category" class="border border-gray-200 rounded p-2 w-full">
+                    @foreach ($categories as $category)
+                        <option value="{{ $category }}" {{ $course->category == $category ? 'selected' : '' }}>{{ $category }}</option>
+                    @endforeach
+                </select>
+                @error('category')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-6">
+                <label for="image" class="inline-block text-lg mb-2">Image</label>
+                <input type="file" class="border border-gray-200 rounded p-2 w-full"
+                    name="image" />
+                @error('image')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
             <div class="mb-6">
                 <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">

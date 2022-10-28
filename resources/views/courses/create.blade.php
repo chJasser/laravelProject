@@ -7,7 +7,7 @@
 
         </header>
 
-        <form action="/courses/manage" method="POST">
+        <form action="/courses/manage" method="POST"  enctype="multipart/form-data">
             @csrf
             <div class="mb-6">
                 <label for="title" class="inline-block text-lg mb-2">Title</label>
@@ -25,6 +25,25 @@
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
+            <div class="mb-6">
+                <label for="category" class="inline-block text-lg mb-2">Category</label>
+                <select name="category" id="category" class="border border-gray-200 rounded p-2 w-full">
+                    @foreach ($categories as $category)
+                    <option value="{{ $category }}">{{ $category }}</option>
+                    @endforeach
+                </select>
+                @error('category')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-6">
+                <label for="image" class="inline-block text-lg mb-2">Image</label>
+                <input type="file" value="{{ old('image') }}" class="border border-gray-200 rounded p-2 w-full" name="image" placeholder="Example: nodeJS" />
+                @error('image')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
 
 
 
