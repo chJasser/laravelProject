@@ -57,23 +57,29 @@
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
                                 <a href="/clubs/{{ $club->id }}/members" class="text-blue-400 px-6 py-2 rounded-xl"><i
                                         class="fa-solid fa-pen-to-square"></i>
-                                    Members</a>
+                                  {{$club->users->count()}}  Members</a>
                             </td>
                             <td>
-                                <a href="/clubs/{{$club->id}}/subscribe" class="text-blue-400 px-6 py-2 rounded-xl"><i
+                               @if ($club->users->contains(auth()->user()))
+                                   <a href="/clubs/{{ $club->id }}/leave" class="text-blue-400 px-6 py-2 rounded-xl"><i
                                         class="fa-solid fa-pen-to-square"></i>
-                                    {{-- {{
-                                    $club->users>contains(auth()->user()->id) ? 'Unsubscribe' : 'Subscribe'
-                                    }} --}}
-                                    </a>
+                                    Leave</a>
+                               @else
+                                   <a href="/clubs/{{ $club->id }}/join" class="text-blue-400 px-6 py-2 rounded-xl"><i
+                                        class="fa-solid fa-pen-to-square"></i>
+                                    Join</a>
+                               @endif
                         </tr>
                     @endforeach
-                @else
-                    <p class="text-center">No clubs yet.</p>
-                   <button class="btn btn-primary">Create a club</button>
+
 
             </tbody>
         </table>
+        <div class="d-flex justify-content-center">
+            {{-- {!! $clubs->links() !!} --}}
+        </div>
+        @else
+        <p class="text-center">No clubs yet.</p>
         @endunless
     </x-card>
 </x-layout>

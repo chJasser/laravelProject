@@ -31,6 +31,9 @@ Route::post('/clubs/manage', [clubController::class, 'store']);
 Route::get('/clubs/{club}/edit', [clubController::class, 'edit']);
 Route::put('/clubs/{club}', [clubController::class, 'update']);
 Route::get('/clubs/{club}', [clubController::class, 'show']);
+Route::get('/clubs/{club}/members', [clubController::class, 'members']);
+Route::get('/clubs/{club}/join', [clubController::class, 'join']);
+Route::get('/clubs/{club}/leave', [clubController::class, 'leave']);
 //course
 Route::get('/courses/manage', [courseController::class, 'manage']);
 Route::get('/courses/create', [courseController::class, 'create']);

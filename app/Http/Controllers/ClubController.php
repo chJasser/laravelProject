@@ -126,5 +126,24 @@ class ClubController extends Controller
 
         return  view('clubs.manage', ['clubs' => auth()->user()->clubs()->get()]);
     }
+    public function join(club $club)
+    {
+        $club->users()->attach(auth()->id());
+        return redirect('/clubs/manage')->with('message', 'club joined successfully !');
+    }
+    public function leave(club $club)
+    {
+        $club->users()->detach(auth()->id());
+        return redirect('/clubs/manage')->with('message', 'club left successfully !');
+    }
+
+
+    public function members(club $club)
+
+    {
+
+        $members = $club->users()->get();
+        return view('clubs.members', ['users' =>$members]);
+    }
 }
 
