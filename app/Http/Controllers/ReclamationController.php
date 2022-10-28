@@ -39,7 +39,7 @@ class ReclamationController extends Controller
     {
         $formFields = $request->validate([
             'title'=>'required',
-            'content'=>'required',
+            'content'=>'required|min:15',
             'convention_id'=>'required'
         ]);
         $formFields['user_id'] = auth()->id();
@@ -49,7 +49,7 @@ class ReclamationController extends Controller
         return redirect('/reclamations/manageUser')->with('message', 'new reclamation created successfully !');
     }
 
-   
+
     public function show(Reclamation $reclamation)
     {
       $selected = ConventionController::getByid($reclamation->convention_id);
@@ -57,8 +57,8 @@ class ReclamationController extends Controller
             'reclamation' => $reclamation,'selected'=>$selected
         ]);
     }
-    
-    
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -88,7 +88,7 @@ class ReclamationController extends Controller
         }
         $formFields = $request->validate([
             'title'=>'required',
-            'content'=>'required',
+            'content'=>'required|min:15',
         ]);
         $reclamation->update($formFields);
 
@@ -109,13 +109,13 @@ class ReclamationController extends Controller
     }
     public function manage()
     {
-        $reclamations = Reclamation::all();  
+        $reclamations = Reclamation::all();
        // return  view('reclamations.manage', ['reclamations' => auth()->user()->reclamations()->get()]);
        return  view('reclamations.manage', ['reclamations' => $reclamations]);
     }
     public function manageUser()
     {
-        //$reclamations = Reclamation::all();  
+        //$reclamations = Reclamation::all();
         return  view('reclamations.manageUser', ['reclamations' => auth()->user()->reclamations()->get()]);
       // return  view('reclamations.manage', ['reclamations' => $reclamations]);
     }

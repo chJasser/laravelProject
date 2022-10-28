@@ -53,7 +53,7 @@ class ConventionController extends Controller
     {
         $formFields = $request->validate([
             'name' => 'required',
-            'description' => 'required',
+            'description' => 'required|min:15',
             'start_date' => 'required',
             'end_date' => 'required',
 
@@ -81,7 +81,7 @@ class ConventionController extends Controller
         }
         $formFields = $request->validate([
             'name' => 'required',
-            'description' => 'required',
+            'description' =>'required|min:15',
             'start_date' => 'required',
             'end_date' => 'required',
         ]);

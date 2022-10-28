@@ -2,7 +2,6 @@
 <x-card>
     <div class="flex">
         <img class="hidden w-48 mr-3 md:block"
-
             src="{{ $event->logo ? asset('storage/' . $event->logo) : asset('images/no-image.png') }}" alt="" />
 
         <div>

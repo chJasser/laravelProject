@@ -40,9 +40,9 @@ class forumController extends Controller
     {
 
         $formFields = $request->validate([
-            'title' => 'required',
+            'title' => 'required|unique:Forums|max:20',
             'designedTo' => 'required',
-            'description' => 'required',
+            'description' => 'required|min:10',
             'tags' => 'required',
             'maxPresent' => 'required',
             'date' => 'required'
@@ -69,9 +69,9 @@ class forumController extends Controller
             abort(403, 'Unauthorized Action');
         }
         $formFields = $request->validate([
-            'title' => 'required',
+            'title' => 'required|unique:Forums|max:20',
             'designedTo' => 'required',
-            'description' => 'required',
+            'description' => 'required|min:10',
             'tags' => 'required',
             'maxPresent' => 'required',
             'date' => 'required'

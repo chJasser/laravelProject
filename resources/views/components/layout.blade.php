@@ -79,12 +79,11 @@
                         <a href="/events" class="hover:text-laravel"><i class="fa-solid fa-list"></i>
                             Events</a>
                     </li>
-                    <<<<<<< HEAD <li>
+                  <li>
                         <a href="/events/participation" class="hover:text-laravel"><i class="fa-solid fa-heart"></i>
                             Participations</a>
                         </li>
-                        =======
-                        >>>>>>> 57a43365bdca0c90258bb4057eaf702a3e17fe5b
+
                     @endunless
                     <li>
                         <form class="inline" method="POST" action="/logout">

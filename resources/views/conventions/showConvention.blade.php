@@ -6,6 +6,9 @@
     <div class="mx-4">
         <x-card class="p-10 ">
             <div class="flex flex-col items-center justify-center text-center">
+                <img class="hidden w-48 mr-6 md:block"
+                    src="{{ $convention->picture ? asset('storage/' . $convention->picture) : asset('images/no-image.png') }}"
+                    alt="" />
                 <h3 class="text-2xl mb-2">{{ $convention->name }}</h3>
                 <div class="text-xl font-bold mb-4">{{ $convention->owner }}</div>
                 <div class="border border-gray-200 w-full mb-6"></div>
@@ -17,6 +20,6 @@
                 </div>
         </x-card>
         <x-convention-item :convention="$convention"> </x-convention-item>
-        
+
     </div>
 </x-layout>
