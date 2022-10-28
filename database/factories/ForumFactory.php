@@ -18,8 +18,7 @@ class ForumFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
-            'user_id' => 1,
-            'description' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima, sint unde? Eos quisquam laudantium iste tempore, incidunt ipsum ipsam. Amet voluptatem excepturi aliquid, vel ipsum fugiat minima praesentium qui? Corporis.',
+            'description' => fake()->paragraph(10),
             'maxPresent' => $this->faker->randomNumber(),
             'designedTo' => 'Students',
             'tags' => 'SPORT,MUSIC,FOOD',
