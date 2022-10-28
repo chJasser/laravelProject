@@ -1,6 +1,5 @@
 <x-layout>
     <x-card class="p-10">
-
         <header>
             @if (auth()->user()->role == 'admin')
                 <a href="/clubs/manage" class="inline-block text-black ml-4 mb-4"><i class="fa-solid fa-arrow-left"></i> Back

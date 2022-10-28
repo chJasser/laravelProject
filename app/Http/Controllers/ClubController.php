@@ -13,10 +13,14 @@ class ClubController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( )
     {
-        $clubs = club::all();
-        return view('clubs.index', compact('clubs'));
+        dd(request->search);
+        return view('clubs.manage', [
+            'clubs' => Club::latest()
+                ->filter(request('search'))
+                ->paginate(4)
+        ]);
     }
 
     public function create()
@@ -120,8 +124,15 @@ class ClubController extends Controller
     }
     public function manage()
     {
+        // dd(Club::where('user_id', auth()->user()->id)->get());
+        return view('clubs.manage', [
+        'clubs' =>Club::where('user_id', auth()->user()->id)->get()
 
-        return  view('clubs.manage', ['clubs' => auth()->user()->clubs()->get()]);
+
+    ]);
+
+
+
     }
     public function join(club $club)
     {

@@ -29,5 +29,13 @@ class Club extends Model
         'logo',
         'user_id',
     ];
+    public function scopeFilter($query, array $filter)
+    {
+        if ($filter['search'] ?? false) {
+            $query
+                ->where('name', 'like', '%' . request('search') . '%')
+                ->orWhere('category', 'like' . '%', request('search') . '%');
+        }
+    }
 
 }
